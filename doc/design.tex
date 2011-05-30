@@ -14,12 +14,59 @@
 \item[POST /users/nnn/projects] add a new user project
 \item[GET /projects/nnn/edit] change project info form such as add /remove users
 \item[POST /projects/nnn] do change such as add / remove users
-\item[GET /projects/nnn/designdocs] any project design docs that the team should -- although we
-really want this stuff in source control
 \item[GET /projects/nnn/tasks] list of tasks for a project
-\item[GET /projects/nnn/stats/looptime] graph of project loop time. we should see the loop time for the individual logged in as well as the group as a whole
+\item[GET /projects/nnn/stats/looptime] graph of project loop time. we should see the loop time for 
+the individual logged in as well as the group as a whole
 \item[GET /projects] show selection of projects that might be of interest to user, projects your watching,
 projects like yours
 \item[GET /projects/search] do a project search
+\section{Data Structure}
+\begin{itemize}
+\item User
+\begin{verbatim}
+{
+	'_id': 'Uuid',
+	'_rev': 'Uuid',
+	'type': 'user',
+	'password': 'String'
+	'projectsImContributingTo': ['Uuid']
+	'projectsImFollowing': ['Uuid']
+	'email' : 'Email'
+}
+\end{verbatim}
+\item Project
+\begin{verbatim}
+{
+	'_id': 'Uuid (project name)'
+	'_rev': 'Uuid'
+	'type': 'project'
+	'contributors': []
+	'followers': []
+        'documentLocation': 'Url'
+}
+\end{verbatim}
+\item Task
+\begin{verbatim}
+{
+	'_id': 'Uuid',
+	'_rev': 'Uuid',
+	'type': 'task',
+	'title': 'String', 
+	'specification': 'String',
+	'project': 'Uuid',
+	'solutionTeam': ['Uuid'],
+	'deliversUserFunctionality': 'Boolean'
+	'taskCreateDate': [Int, Int, Int, Int, Int, Int] //when not set this is null
+	'taskStartDate': [Int, Int, Int, Int, Int, Int],
+	'taskCompleteDate': [Int, Int, Int, Int, Int, Int],
+	'taskTerminateDate':[x,x,x,x,x,x]    ----as an experiment Im going leave this as a potentailly 'undefined' value
+	'progress': "proposed|inProgress|delivered"
+	'priority': 1 | 2 | 3  (or (nil? (task "priority")) (#{1 2 3} (task "priority"))
+	'namespace': [{"predicate" "value"}, ...] (this will be a vector but we will start with one)
+}
+\end{verbatim}
+
+\end{itemize}
+
 \end{description}
 \end{document}
