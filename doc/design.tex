@@ -1,0 +1,20 @@
+\documentclass{article}
+\title{Design Notes}
+\author{Marco}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Url Structure}
+\begin{description}
+\item[GET /login] the main login page
+\item[GET /users/new] create a new user form
+\item[POST /users] create a new user
+\item[GET /users/nnn/projects] list of user projects
+\item[POST /users/nnn/projects] add a new user project
+\item[GET /projects/nnn/edit] change project info form such as add /remove users
+\item[POST /projects/nnn] do change such as add / remove users
+\item[GET /projects/nnn/tasks] list of tasks for a project
+\item[GET /projects/nnn/stats/looptime] graph of project loop time. we should see the loop time for the individual logged in as well as the group as a whole
+\end{description}
+\end{document}
