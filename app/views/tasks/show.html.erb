@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @task.title %>
+</p>
+
+<p>
+  <b>Specification:</b>
+  <%= @task.specification %>
+</p>
+
+<p>
+  <b>Project:</b>
+  <%= @task.project_id %>
+</p>
+
+<p>
+  <b>Delivers user functionality:</b>
+  <%= @task.delivers_user_functionality %>
+</p>
+
+<p>
+  <b>Work started at:</b>
+  <%= @task.work_started_at %>
+</p>
+
+<p>
+  <b>Work finished at:</b>
+  <%= @task.work_finished_at %>
+</p>
+
+<p>
+  <b>Delivered at:</b>
+  <%= @task.delivered_at %>
+</p>
+
+<p>
+  <b>Terminated at:</b>
+  <%= @task.terminated_at %>
+</p>
+
+<p>
+  <b>Progress:</b>
+  <%= @task.progress %>
+</p>
+
+<p>
+  <b>Priority:</b>
+  <%= @task.priority %>
+</p>
+
+<p>
+  <b>Namespace:</b>
+  <%= @task.namespace %>
+</p>
+
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>

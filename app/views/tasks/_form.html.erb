@@ -1,0 +1,61 @@
+<%= form_for(@task) do |f| %>
+  <% if @task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+      <% @task.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :specification %><br />
+    <%= f.text_area :specification %>
+  </div>
+  <div class="field">
+    <%= f.label :project_id %><br />
+    <%= f.text_field :project_id %>
+  </div>
+  <div class="field">
+    <%= f.label :delivers_user_functionality %><br />
+    <%= f.check_box :delivers_user_functionality %>
+  </div>
+  <div class="field">
+    <%= f.label :work_started_at %><br />
+    <%= f.datetime_select :work_started_at %>
+  </div>
+  <div class="field">
+    <%= f.label :work_finished_at %><br />
+    <%= f.datetime_select :work_finished_at %>
+  </div>
+  <div class="field">
+    <%= f.label :delivered_at %><br />
+    <%= f.datetime_select :delivered_at %>
+  </div>
+  <div class="field">
+    <%= f.label :terminated_at %><br />
+    <%= f.datetime_select :terminated_at %>
+  </div>
+  <div class="field">
+    <%= f.label :progress %><br />
+    <%= f.text_field :progress %>
+  </div>
+  <div class="field">
+    <%= f.label :priority %><br />
+    <%= f.text_field :priority %>
+  </div>
+  <div class="field">
+    <%= f.label :namespace %><br />
+    <%= f.text_field :namespace %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,43 @@
+<h1>Listing tasks</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Specification</th>
+    <th>Project</th>
+    <th>Delivers user functionality</th>
+    <th>Work started at</th>
+    <th>Work finished at</th>
+    <th>Delivered at</th>
+    <th>Terminated at</th>
+    <th>Progress</th>
+    <th>Priority</th>
+    <th>Namespace</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tasks.each do |task| %>
+  <tr>
+    <td><%= task.title %></td>
+    <td><%= task.specification %></td>
+    <td><%= task.project_id %></td>
+    <td><%= task.delivers_user_functionality %></td>
+    <td><%= task.work_started_at %></td>
+    <td><%= task.work_finished_at %></td>
+    <td><%= task.delivered_at %></td>
+    <td><%= task.terminated_at %></td>
+    <td><%= task.progress %></td>
+    <td><%= task.priority %></td>
+    <td><%= task.namespace %></td>
+    <td><%= link_to 'Show', task %></td>
+    <td><%= link_to 'Edit', edit_task_path(task) %></td>
+    <td><%= link_to 'Destroy', task, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Task', new_task_path %>
