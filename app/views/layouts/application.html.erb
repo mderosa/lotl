@@ -1,14 +1,38 @@
 <!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <html>
-<head>
-  <title>Lotl</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="project management for continuous deployment">
+    <meta name="author" content="marco">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<%= yield %>
+    <title>Lotl</title>
+    <%= stylesheet_link_tag "style", :media => "all" %>
+    <%= stylesheet_link_tag "blueprint/screen", :media => "screen, projection" %>
+    <%= stylesheet_link_tag "blueprint/print", :media => "print" %>
+    <!--[if lt IE 8]>
+    <%= stylesheet_link_tag "blueprint/ie", :media => "screen, projection" %>
+    <![endif]-->
+    <%= javascript_include_tag :defaults %>
+    <%= javascript_include_tag "libs/modernizr-2.0.min.js" %>
+    <%= javascript_include_tag "libs/respond.min.js" %>
+    <%= csrf_meta_tag %>
 
-</body>
+  </head>
+  <body>
+    <div class="container">
+
+      <%= render "layouts/header" %>
+
+      <%= yield %>
+
+      <%= render "layouts/footer" %>
+      <%= debug(params) if Rails.env.development? %>
+    </div>
+  </body>
 </html>
