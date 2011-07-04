@@ -3,30 +3,41 @@ require 'spec_helper'
 describe Project do
 
   describe "validation requirements" do
-    
+
     before(:each) do
-      @user = User.new(:password => "password", :email => "marc@email.com")
+      @params = {:name => "project name", :repository => ""}
+      @proj = Project.new(@params)
     end
 
-    it "a user should have a non null email" do
-      @user.email = nil
-      @user.email.should be_nil
-      @user.should_not be_valid
+    it "default project object should pass validation" do
+      @proj.should be_valid
     end
 
-    it "a users email field must follow the standard email format" do
-      @user.should be_valid
-    end
-      
-    it "a invalid email format should not pass validation" do
-      @user.email = "novalid"
-      @user.should_not be_valid
+    it "name should not be blank" do 
+      @proj.name = "     "
+      @proj.should_not be_valid
     end
 
-    it "a email with an incomplete domain specificaiton should fail validation" do
-      @user.email = "ddkkd@test"
-      @user.should_not be_valid
+    it "name should have a maximum length of 255 characters" do
+      @proj.name = ("a" * 333)
+      @proj.should_not be_valid
+    end
+
+    it "if not blank a repository can have the form of a git hub repository string" do
+      @proj.repository = "git@github.com:mderosa/lotl.git"
+      @proj.should be_valid
+    end
+
+    it "the repository can come in as nil and pass" do
+      @proj.repository = nil
+      @proj.should be_valid
+    end
+
+    it "we should not be able to set repository to a blank string" do
+      p = Project.new(:name => "somthing", :repository => "   ")
+      p.repository.should be_nil
     end
 
   end
+
 end

@@ -31,7 +31,7 @@ describe UsersController do
     it "assigns all users as @users" do
       user = User.create! valid_attributes
       get :index
-      assigns(:users).should eq([user])
+      assigns(:users).should include(user)
     end
   end
 

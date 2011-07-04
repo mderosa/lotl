@@ -5,3 +5,17 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
+
+Task.delete_all
+Project.delete_all
+User.delete_all
+
+user = User.create!(:password => "password", :salt => "salt", :email => "marc@email.com")
+
+project1 = Project.new(:name => "Project1")
+project1.users << user
+project1.save()
+
+
+
+

@@ -22,4 +22,13 @@
 class Task < ActiveRecord::Base
   belongs_to :project
   has_and_belongs_to_many :users
+
+  attr_accessible :title, :specification, :project_id, :delivers_user_functionality,
+                  :progress, :priority, :namespace
+
+  validates :title, :presence => true
+  validates :project_id, :numericality => {:only_integer => true}
+  validates :progress, :inclusion => {:in => %w(proposed inProgress delivered)}
+  validates :priority, :inclusion => {:in => [1,2,3], :allow_nil => true}
+  
 end

@@ -14,4 +14,16 @@ class Project < ActiveRecord::Base
   has_many :tasks
   has_and_belongs_to_many :users
 
+  attr_accessible :name, :repository
+
+  validates :name, :presence => true,
+                  :length => {:maximum => 255}
+
+  validates :repository, :format => {:with => /^git@github.com:\w+\/\w+\.git$/, :allow_nil => true}
+
+  def repository=(repo)
+    return nil if repo.blank?
+    return repo
+  end
+
 end
