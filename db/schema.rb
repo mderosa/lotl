@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110703011409) do
+ActiveRecord::Schema.define(:version => 20110704003615) do
 
   create_table "projects", :force => true do |t|
     t.string   "name",       :null => false
@@ -19,15 +19,13 @@ ActiveRecord::Schema.define(:version => 20110703011409) do
     t.datetime "updated_at"
   end
 
-  create_table "projects_tasks", :id => false, :force => true do |t|
-    t.integer "task_id",    :null => false
-    t.integer "project_id", :null => false
-  end
-
   create_table "projects_users", :id => false, :force => true do |t|
     t.integer "user_id",    :null => false
     t.integer "project_id", :null => false
   end
+
+  add_index "projects_users", ["project_id"], :name => "index_projects_users_on_project_id"
+  add_index "projects_users", ["user_id"], :name => "index_projects_users_on_user_id"
 
   create_table "tasks", :force => true do |t|
     t.string   "title",                                                             :null => false
@@ -45,6 +43,16 @@ ActiveRecord::Schema.define(:version => 20110703011409) do
     t.datetime "updated_at"
   end
 
+  add_index "tasks", ["project_id"], :name => "index_tasks_on_project_id"
+
+  create_table "tasks_users", :id => false, :force => true do |t|
+    t.integer "task_id", :null => false
+    t.integer "user_id", :null => false
+  end
+
+  add_index "tasks_users", ["task_id"], :name => "index_tasks_users_on_task_id"
+  add_index "tasks_users", ["user_id"], :name => "index_tasks_users_on_user_id"
+
   create_table "users", :force => true do |t|
     t.string   "password",   :limit => 64, :null => false
     t.string   "salt",       :limit => 64, :null => false
@@ -52,5 +60,7 @@ ActiveRecord::Schema.define(:version => 20110703011409) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["email"], :name => "index_users_on_email"
 
 end
