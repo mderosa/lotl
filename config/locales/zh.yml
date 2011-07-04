@@ -1,0 +1,11 @@
+
+zh:
+  tasks:
+    index:
+      tasks: 任务
+      title: 标题
+      specification: 需求
+      delivers-user-functionality: 跟用户有关的功能
+      progress: 进度
+      priority: 优先级
+      namespace: 命名空间
