@@ -15,4 +15,9 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :projects
   has_and_belongs_to_many :tasks
 
+  attr_accessible :password, :email, :salt
+
+  validates :email, :presence => true,
+                    :format => {:with => /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i}
+
 end
