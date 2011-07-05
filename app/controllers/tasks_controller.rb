@@ -3,6 +3,9 @@ class TasksController < ApplicationController
   # GET /tasks.xml
   def index
     @tasks = Task.all
+    @proposed_tasks = Task.where("progress = 'proposed'").order("priority DESC").limit(15).offset(0)
+    @inProgress_tasks = Task.where("progress = 'inProgress'").order("work_started_at DESC").limit(15).offset(0)
+    @delivered_tasks = Task.where("progress = 'delivered'").order("delivered_at").limit(15).offset(0)
 
     respond_to do |format|
       format.html # index.html.erb

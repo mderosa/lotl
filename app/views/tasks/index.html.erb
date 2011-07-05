@@ -1,33 +1,63 @@
-<h2><%= t ".tasks" %></h2>
 
-<table>
-  <tr>
-    <th><%= t ".title" %></th>
-    <th><%= t ".specification" %></th>
-    <th><%= t ".delivers-user-functionality" %></th>
-    <th><%= t ".progress" %></th>
-    <th><%= t ".priority" %></th>
-    <th><%= t ".namespace" %></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="ltl-tasks span-24 last">
+  <div class="ltl-task-bucket span-8">
+    <div class="ltl-bucket-title span-8 last">
+      Proposed
+      <%= link_to '[new]', new_task_path, :id => 'new' %>
+    </div>
+    <div class="ltl-bucket-tasks span-8 last">
+      <% @proposed_tasks.each do |task| %>
+      <div class="ltl-task-summary span-8 last">
+	<div class="ltl-task-title span-8 last">
+	  <%= link_to task.title, edit_task_path(task) %>
+	</div>
+	<div class="span-3 prepend-1"><i>mderosa</i></div>
+	<div class="span-3 last prepend-1 quiet">
+	  Priority: <%= task.priority %>
+	  <br/>
+	  User Func: <%= task.delivers_user_functionality %>
+	</div>
+      </div>
+      <% end %>
+    </div>
+  </div> <%# proposed bucket %>
 
-<% @tasks.each do |task| %>
-  <tr>
-    <td><%= task.title %></td>
-    <td><%= task.specification %></td>
-    <td><%= task.delivers_user_functionality %></td>
-    <td><%= task.progress %></td>
-    <td><%= task.priority %></td>
-    <td><%= task.namespace %></td>
-    <td><%= link_to 'Show', task %></td>
-    <td><%= link_to 'Edit', edit_task_path(task) %></td>
-    <td><%= link_to 'Destroy', task, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+  <div class="ltl-task-bucket span-8">
+    <div class="ltl-bucket-title span-8 last">Work in Progress</div>
+    <div class="ltl-bucket-tasks span-8 last">
+      <% @inProgress_tasks.each do |task| %>
+      <div class="ltl-task-summary span-8 last">
+	<div class="ltl-task-title span-8 last">
+	  <%= link_to task.title, edit_task_path(task) %>
+	</div>
+	<div class="span-3 prepend-1"><i>mderosa</i></div>
+	<div class="span-3 last prepend-1 quiet">
+	  Cost: 23
+	  <br/>
+	  Is Done: Y
+	</div>
+      </div>
+      <% end %>
+    </div>    
+  </div> <%# in progress bucket end %>
 
-<br />
+  <div class="ltl-task-bucket span-8 last">
+    <div class="ltl-bucket-title span-8 last">Delivered to User</div>
+    <div class="ltl-bucket-tasks span-8 last">
+      <% @delivered_tasks.each do |task| %>
+      <div class="ltl-task-summary span-8 last">
+	<div class="ltl-task-title span-8 last">
+	  <%= link_to task.title, edit_task_path(task) %>
+	</div>
+	<div class="span-3 prepend-1"><i>mderosa</i></div>
+	<div class="span-3 last prepend-1 quiet">
+	  Cost: 23
+	  <br/>
+	  Is Done: Y
+	</div>
+      </div>
+      <% end %>
+    </div>
+  </div> <%# delivered bucket end %>
 
-<%= link_to 'New Task', new_task_path %>
+</div>
