@@ -9,10 +9,11 @@
       <% @proposed_tasks.each do |task| %>
       <div class="ltl-task-summary span-8 last">
 	<div class="ltl-task-title span-8 last">
-	  <%= link_to task.title, edit_task_path(task) %>
+	  <%= link_to(truncate(task.title, :length => 52), 
+	              edit_task_path(task)) %>
 	</div>
 	<div class="span-3 prepend-1"><i>mderosa</i></div>
-	<div class="span-3 last prepend-1 quiet">
+	<div class="span-4 last quiet">
 	  Priority: <%= task.priority %>
 	  <br/>
 	  User Func: <%= task.delivers_user_functionality %>
@@ -31,10 +32,10 @@
 	  <%= link_to task.title, edit_task_path(task) %>
 	</div>
 	<div class="span-3 prepend-1"><i>mderosa</i></div>
-	<div class="span-3 last prepend-1 quiet">
-	  Cost: 23
+	<div class="span-4 last quiet">
+	  Cost: <%# calc_cost task %>
 	  <br/>
-	  Is Done: Y
+	  Done on: <%= task.work_finished_at.strftime("%y-%m-%d") if not task.work_finished_at.nil? %>
 	</div>
       </div>
       <% end %>
@@ -50,10 +51,10 @@
 	  <%= link_to task.title, edit_task_path(task) %>
 	</div>
 	<div class="span-3 prepend-1"><i>mderosa</i></div>
-	<div class="span-3 last prepend-1 quiet">
-	  Cost: 23
+	<div class="span-4 last quiet">
+	  Cost: <%# calc_cost task %>
 	  <br/>
-	  Is Done: Y
+	  Deployed on: <%= task.delivered_at.strftime("%y-%m-%d") if not task.delivered_at.nil? %>
 	</div>
       </div>
       <% end %>
