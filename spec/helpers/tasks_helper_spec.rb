@@ -26,8 +26,8 @@ describe TasksHelper do
     end
     
     it ", for a normally delivered task, should calculate hours to deploy divided by 24" do
-      params = @params.merge(:progress => 'delivered')
-      task = Task.new(params)
+      task = Task.new()
+      task.progress = 'delivered'
       task.work_started_at = Time.utc(2000, 1, 1, 1, 24)
       task.work_finished_at = Time.utc(2000, 1, 3, 1, 33)
       task.delivered_at = Time.utc(2000, 1, 4, 5, 21)
@@ -36,8 +36,8 @@ describe TasksHelper do
     end
 
     it ", for a reworked, delivered task, should return the elapsed days with an additional penalty" do
-      params = @params.merge(:progress => 'delivered')
-      task = Task.new(params)
+      task = Task.new
+      task.progress = 'delivered'
       task.work_started_at = Time.utc(2000, 1, 1, 1, 24)
       task.work_finished_at = Time.utc(2000, 1, 5, 1, 33)
       task.delivered_at = Time.utc(2000, 1, 4, 5, 21)
@@ -46,8 +46,8 @@ describe TasksHelper do
     end
 
     it "should return a straight penalty calculation for inProgress tasks with a termination date" do
-      params = @params.merge(:progress => 'inProgress')
-      task = Task.new(params)
+      task = Task.new
+      task.progress = 'inProgress'
       task.work_started_at = Time.utc(2000, 1, 1, 1, 24)
       task.work_finished_at = Time.utc(2000, 1, 3, 1, 33)
       task.terminated_at = Time.utc(2000, 1, 6 , 5, 21)
@@ -56,8 +56,8 @@ describe TasksHelper do
     end
 
     it "should return a standard days elapsed calculation when delivered_at is null and terminated_at is null" do
-      params = @params.merge(:progress => 'inProgress')
-      task = Task.new(params)
+      task = Task.new
+      task.progress = 'inProgress'
       task.work_started_at = Time.utc(2001, 1, 1, 1, 24)
       task.delivered_at.should be_nil
 
@@ -66,9 +66,9 @@ describe TasksHelper do
       cost.should > 100      
     end
 
-    it "should return elapsed days with penalty the task is inProgress and being reworked" do
-      params = @params.merge(:progress => 'inProgress')
-      task = Task.new(params)
+    it "should return elapsed days with penalty if the task is inProgress and being reworked" do
+      task = Task.new
+      task.progress = 'inProgress'
       task.work_started_at = Time.utc(2000, 1, 1, 1, 24)
       task.work_finished_at = Time.utc(2000, 1, 5, 5, 22)
       task.delivered_at = Time.utc(2000, 1, 4, 5, 21)

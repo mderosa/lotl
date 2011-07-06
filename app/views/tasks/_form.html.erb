@@ -27,26 +27,12 @@
     <%= f.label :delivers_user_functionality %><br />
     <%= f.check_box :delivers_user_functionality %>
   </div>
-  <div class="field">
-    <%= f.label :work_started_at %><br />
-    <%= f.datetime_select :work_started_at %>
-  </div>
-  <div class="field">
-    <%= f.label :work_finished_at %><br />
-    <%= f.datetime_select :work_finished_at %>
-  </div>
-  <div class="field">
-    <%= f.label :delivered_at %><br />
-    <%= f.datetime_select :delivered_at %>
-  </div>
-  <div class="field">
-    <%= f.label :terminated_at %><br />
-    <%= f.datetime_select :terminated_at %>
-  </div>
+  <% if not @task.new_record? %>
   <div class="field">
     <%= f.label :progress %><br />
     <%= f.text_field :progress %>
   </div>
+  <% end %>
   <div class="field">
     <%= f.label :priority %><br />
     <%= f.text_field :priority %>

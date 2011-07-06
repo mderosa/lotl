@@ -24,11 +24,60 @@ class Task < ActiveRecord::Base
   has_and_belongs_to_many :users
 
   attr_accessible :title, :specification, :project_id, :delivers_user_functionality,
-                  :progress, :priority, :namespace
+  :progress, :priority, :namespace
 
   validates :title, :presence => true
   validates :project_id, :numericality => {:only_integer => true}
   validates :progress, :inclusion => {:in => %w(proposed inProgress delivered)}
   validates :priority, :inclusion => {:in => [1,2,3], :allow_nil => true}
-  
+
+  def initialize(attributes = nil)
+    super
+    write_attribute :progess, 'proposed'
+  end
+
+  def progress=(next_state)
+    current = read_attribute :progress
+    if current == 'proposed'
+      update_progress_from_proposed(next_state)
+    elsif current == 'inProgress'
+      update_progress_from_inProgress(next_state)
+    elsif current == 'delivered'
+      update_progress_from_delivered(next_state)
+    else
+      raise RuntimeError, 'Task.progress has an invalid state' if not current.nil?
+    end
+  end
+
+  private
+
+  def update_progress_from_delivered(next_state)
+    if next_state == 'inProgress'
+      write_attribute :progress, next_state
+      write_attribute :work_finished_at, nil
+    end
+  end
+
+  def update_progress_from_inProgress(next_state)
+    if next_state == 'delivered'
+      write_attribute :progress, next_state
+      write_attribute(:work_finished_at, Time.now) if read_attribute(:work_finished_at).nil?
+      write_attribute :delivered_at, Time.now
+    end
+  end
+
+  def update_progress_from_proposed(next_state)
+    if next_state == 'inProgress'
+      write_attribute :progress, next_state
+      write_attribute :work_started_at, Time.now
+    elsif next_state == 'delivered'
+      write_attribute :progress, next_state
+      write_attribute(:work_finished_at, Time.now) if read_attribute(:work_finished_at).nil?
+      write_attribute :delivered_at, Time.now
+    end
+  end
+
 end
+
+
+#error a date was not set to a time, write_attribute(:work_finished_at, next_state) if read_attribute(:work_finished_at).nil? 

@@ -37,7 +37,7 @@ describe TasksController do
   describe "GET index" do
     it "assigns all tasks as @tasks" do
       get :index
-      assigns(:tasks).should eq([@def_task])
+      assigns(:proposed_tasks).should include(@def_task)
     end
   end
 
