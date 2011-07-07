@@ -1,4 +1,6 @@
-<%= form_for(@task) do |f| %>
+
+<%= form_for(@task, :url => @task.new_record? ? project_tasks_path(params[:project_id]) : 
+                                                project_task_path(params[:project_id], @task)) do |f| %>
   <% if @task.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
@@ -20,19 +22,17 @@
     <%= f.text_area :specification %>
   </div>
   <div class="field">
-    <%= f.label :project_id %><br />
-    <%= f.text_field :project_id %>
-  </div>
-  <div class="field">
     <%= f.label :delivers_user_functionality %><br />
     <%= f.check_box :delivers_user_functionality %>
   </div>
+
   <% if not @task.new_record? %>
   <div class="field">
     <%= f.label :progress %><br />
     <%= f.text_field :progress %>
   </div>
   <% end %>
+
   <div class="field">
     <%= f.label :priority %><br />
     <%= f.text_field :priority %>

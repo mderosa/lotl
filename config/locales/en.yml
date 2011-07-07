@@ -1,9 +1,7 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
   tasks:
-    index: 
+    index:
       tasks: Tasks
       title: Title
       specification: Specification
@@ -11,3 +9,20 @@ en:
       progress: Progress
       priority: Priority
       namespace: Namespace
+  projects:
+    index:
+      proposed: Proposed
+      inProgress: In Progress
+      delivered: Delivered
+      project-access: Project Access
+      recent-activity: Recent activity
+      none: none
+      project-actions: Project Actions
+      create: Create
+      a-new-project: a new project
+      invite: Invite
+      collaborators-to-a-project: collaborators to a project
+      select-a-project: select a project
+      name: Name
+      email: Email
+      git-repository: Git repository

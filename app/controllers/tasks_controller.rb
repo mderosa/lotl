@@ -2,9 +2,13 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.xml
   def index
-    @proposed_tasks = Task.where("progress = 'proposed'").order("priority DESC").limit(15).offset(0)
-    @inProgress_tasks = Task.where("progress = 'inProgress'").order("work_started_at DESC").limit(15).offset(0)
-    @delivered_tasks = Task.where("progress = 'delivered'").order("delivered_at").limit(15).offset(0)
+    @project = Project.find(params[:project_id])
+    @proposed_tasks = Task.where("progress = 'proposed' AND project_id = :project_id", params)
+      .order("priority DESC").limit(15).offset(0)
+    @inProgress_tasks = Task.where("progress = 'inProgress' AND project_id = :project_id", params)
+      .order("work_started_at DESC").limit(15).offset(0)
+    @delivered_tasks = Task.where("progress = 'delivered' AND project_id = :project_id", params)
+      .order("delivered_at DESC").limit(15).offset(0)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -43,10 +47,11 @@ class TasksController < ApplicationController
   # POST /tasks.xml
   def create
     @task = Task.new(params[:task])
+    @task.project_id = params[:project_id]
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to(@task, :notice => 'Task was successfully created.') }
+        format.html { redirect_to(project_tasks_path(params[:project_id]), :notice => 'Task was successfully created.') }
         format.xml  { render :xml => @task, :status => :created, :location => @task }
       else
         format.html { render :action => "new" }
@@ -62,7 +67,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        format.html { redirect_to(@task, :notice => 'Task was successfully updated.') }
+        format.html { redirect_to(project_tasks_path(params[:project_id]), :notice => 'Task was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -78,7 +83,7 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to(tasks_url) }
+      format.html { redirect_to(project_tasks_path(params[:project_id])) }
       format.xml  { head :ok }
     end
   end

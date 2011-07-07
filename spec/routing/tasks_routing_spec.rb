@@ -4,31 +4,31 @@ describe TasksController do
   describe "routing" do
 
     it "routes to #index" do
-      get("/tasks").should route_to("tasks#index")
+      get("/projects/3/tasks").should route_to("tasks#index", :project_id => "3")
     end
 
     it "routes to #new" do
-      get("/tasks/new").should route_to("tasks#new")
+      get("/projects/3/tasks/new").should route_to("tasks#new", :project_id => "3")
     end
 
     it "routes to #show" do
-      get("/tasks/1").should route_to("tasks#show", :id => "1")
+      get("/projects/3/tasks/1").should route_to("tasks#show", :id => "1", :project_id => "3")
     end
 
     it "routes to #edit" do
-      get("/tasks/1/edit").should route_to("tasks#edit", :id => "1")
+      get("/projects/3/tasks/1/edit").should route_to("tasks#edit", :id => "1", :project_id => "3")
     end
 
     it "routes to #create" do
-      post("/tasks").should route_to("tasks#create")
+      post("/projects/3/tasks").should route_to("tasks#create", :project_id => "3")
     end
 
     it "routes to #update" do
-      put("/tasks/1").should route_to("tasks#update", :id => "1")
+      put("/projects/3/tasks/1").should route_to("tasks#update", :id => "1", :project_id => "3")
     end
 
     it "routes to #destroy" do
-      delete("/tasks/1").should route_to("tasks#destroy", :id => "1")
+      delete("/projects/3/tasks/1").should route_to("tasks#destroy", :id => "1", :project_id => "3")
     end
 
   end

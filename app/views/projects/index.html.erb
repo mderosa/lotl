@@ -1,25 +1,66 @@
-<h2>Projects</h2>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Repository</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class="span-15">
+  <h2><%= t ".project-access" %></h2>
 
-<% @projects.each do |project| %>
-  <tr>
-    <td><%= project.name %></td>
-    <td><%= project.repository %></td>
-    <td><%= link_to 'Show', project %></td>
-    <td><%= link_to 'Edit', edit_project_path(project) %></td>
-    <td><%= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+  <% @projects.each do |project| %>
+  <div class="ltl-project-summary span-15 last">
+    <div class="span-4">
+      <h3>
+	<%= link_to project.name, project_tasks_path(project) %>
+      </h3>
+    </div>
+    <div class="ltl-project-tasks span-11 last">
+      <h3><%= t ".recent-activity" %></h3>
+      <% if @project_tasks[project].empty? %>
+      <p><%= t ".none" %></p>
+      <% else %>
+      <% @project_tasks[project].each do |tsk| %>
+      <p>[&nbsp;<%= t(".#{tsk.progress}") %>&nbsp;]&nbsp;<%= tsk.title %></p>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+  <hr/>
+  <% end %>
 
-<br />
+</div>
 
-<%= link_to 'New Project', new_project_path %>
+<div class="span-8 prepend-1 last">
+  <h2 class=""><%= t ".project-actions" %></h2>
+  
+  <div class="ltl-project-action span-7 last">
+    <span class="large"><%= t ".create" %></span>&nbsp;
+    <span><%= t ".a-new-project" %></span>
+    <form class="prepend-1">
+      <label><%= t ".name" %>:</label><br/>
+      <input class="span-6" name="name" type="text"></input>
+      <br/>
+      <label><%= t ".git-repository" %>:</label><br/>
+      <input class="span-6" name="repository" type="text" />
+      <br/>
+      <input type="submit" name="submit" value="<%= t '.create' %>" />
+    </form>
+  </div>
+  
+  <div class="ltl-project-action span-7 last">
+    <span class="large"><%= t ".invite" %></span>&nbsp;
+    <span><%= t ".collaborators-to-a-project" %></span>
+    <form class="prepend-1">
+      <label><%= t ".name" %>:</label><br/>
+      <select name="id" class="span-6">
+	 <option value=""> -- <%= t ".select-a-project" %> --</option>
+	 <% @projects.each do |p| %>
+	 <option value="<%= p.id %>"><%= p.name %></option>	 
+	 <% end %>
+      </select>
+      <br/>
+      <label><%= t ".email" %>:</label><br/>
+      <input class="span-6" name="email" type="text"></input>
+      <br/>
+      <input type="submit" name="submit" value="<%= t '.invite' %>" />
+    </form>
+  </div>
+	      
+</div>
+
+<%# error: forgot to add closing erb tag %>

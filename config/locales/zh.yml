@@ -9,3 +9,20 @@ zh:
       progress: 进度
       priority: 优先级
       namespace: 命名空间
+  projects:
+    index:
+      proposed: 提出了
+      inProgress: 在进行
+      delivered: 发布了
+      project-access: 项目访问
+      recent-activity: 最近变化
+      none: 无
+      project-actions: 项目操作
+      create: 创造
+      a-new-project: 一个新的项目
+      invite: 邀请
+      collaborators-to-a-project: 合作者
+      select-a-project: 选项目
+      name: 名字
+      email: 电子邮箱地址
+      git-repository: Git代码哭

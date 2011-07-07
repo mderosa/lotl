@@ -65,4 +65,8 @@ header h1 {
 .ltl-bucket-title #new {
     margin-left: 20px;
 }
-    
+
+.ltl-project-action .large {
+    font-weight: bold;
+}
+

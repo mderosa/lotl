@@ -35,29 +35,29 @@ describe TasksController do
   end
 
   describe "GET index" do
-    it "assigns all tasks as @tasks" do
-      get :index
+    it "assigns the newly created task above to @proposed tasks" do
+      get :index, :project_id => @def_task.project_id.to_s
       assigns(:proposed_tasks).should include(@def_task)
     end
   end
 
   describe "GET show" do
     it "assigns the requested task as @task" do
-      get :show, :id => @def_task.id.to_s
+      get :show, :id => @def_task.id.to_s, :project_id => @def_task.project_id.to_s
       assigns(:task).should eq(@def_task)
     end
   end
 
   describe "GET new" do
     it "assigns a new task as @task" do
-      get :new
+      get :new, :project_id => @def_task.project_id.to_s
       assigns(:task).should be_a_new(Task)
     end
   end
 
   describe "GET edit" do
     it "assigns the requested task as @task" do
-      get :edit, :id => @def_task.id.to_s
+      get :edit, :id => @def_task.id.to_s, :project_id => @def_task.project_id.to_s
       assigns(:task).should eq(@def_task)
     end
   end
@@ -112,13 +112,13 @@ describe TasksController do
       # end
 
       it "assigns the requested task as @task" do
-        put :update, :id => @def_task.id, :task => valid_attributes
+        put :update, :id => @def_task.id, :task => valid_attributes, :project_id => @def_task.project_id
         assigns(:task).should eq(@def_task)
       end
 
       it "redirects to the task" do
-        put :update, :id => @def_task.id, :task => valid_attributes
-        response.should redirect_to(@def_task)
+        put :update, :id => @def_task.id, :task => valid_attributes, :project_id => @def_task.project_id
+        response.should redirect_to(project_tasks_path(@def_task.project_id))
       end
     end
 
@@ -126,14 +126,14 @@ describe TasksController do
       it "assigns the task as @task" do
         # Trigger the behavior that occurs when invalid params are submitted
         Task.any_instance.stub(:save).and_return(false)
-        put :update, :id => @def_task.id.to_s, :task => {}
+        put :update, :id => @def_task.id.to_s, :task => {}, :project_id => @def_task.project_id.to_s
         assigns(:task).should eq(@def_task)
       end
 
       it "re-renders the 'edit' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Task.any_instance.stub(:save).and_return(false)
-        put :update, :id => @def_task.id.to_s, :task => {}
+        put :update, :id => @def_task.id.to_s, :task => {}, :project_id => @def_task.project_id
         response.should render_template("edit")
       end
     end
@@ -142,14 +142,18 @@ describe TasksController do
   describe "DELETE destroy" do
     it "destroys the requested task" do
       expect {
-        delete :destroy, :id => @def_task.id.to_s
+        delete :destroy, :id => @def_task.id.to_s, :project_id => @def_task.project_id
       }.to change(Task, :count).by(-1)
     end
 
     it "redirects to the tasks list" do
-      delete :destroy, :id => @def_task.id.to_s
-      response.should redirect_to(tasks_url)
+      delete :destroy, :id => @def_task.id.to_s, :project_id => @def_task.project_id
+      response.should redirect_to(project_tasks_url(@def_task.project_id))
     end
   end
 
 end
+
+
+#error: forgot to add a comma in a literal map
+#error: declared a map key but did not make the symbol a symbol by adding a : before it
