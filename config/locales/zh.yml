@@ -9,6 +9,15 @@ zh:
       progress: 进度
       priority: 优先级
       namespace: 命名空间
+      proposed: 提出了
+      new: 新的
+      priority: 优先级
+      user-functionality: 用户功能
+      work-in-progress: 在进行的工作
+      cost: 代价
+      done-on: 完成日期
+      delivered-to-user: 发布给用户
+      deployed-on: 发布日期
   projects:
     index:
       proposed: 提出了

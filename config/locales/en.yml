@@ -9,6 +9,15 @@ en:
       progress: Progress
       priority: Priority
       namespace: Namespace
+      proposed: Proposed
+      new: new
+      priority: Priority
+      user-functionality: User Func.
+      work-in-progress: Work in Progress
+      cost: Cost
+      done-on: Done on
+      delivered-to-user: Delivered to User
+      deployed-on: Deployed on
   projects:
     index:
       proposed: Proposed
