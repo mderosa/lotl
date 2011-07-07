@@ -1,5 +1,7 @@
 Lotl::Application.routes.draw do
 
+  get "entrance/home"
+
   resources :users
 
   resources :projects do
