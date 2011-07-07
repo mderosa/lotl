@@ -1,8 +1,8 @@
 
 <div class="ltl-home-brief span-17">
-  <h2>Project coordination for the future</h2>
+  <h2><%= t ".project-coordination-for-the-future" %></h2>
   <div class="ltl-home-point span-16 last append-bottom">
-    <h3>FEEDBACK</h3>
+    <h3><%= t ".feedback" %></h3>
     <p>An oranization cant evolve itself unless it can respond, recover, and experiment efficiently. LOTL gives groups
       feedback on their efficiency by measuring loop time, the time from when an effort begins when it
       it is fully usable by a recipient. Teams have to learn
@@ -10,13 +10,13 @@
       and individual level.</p>
   </div>
   <div class="ltl-home-point span-16 last append-bottom">
-    <h3>LEARNING</h3>
+    <h3><%= t ".learning" %></h3>
     <p>Working more productively is also matter of leaning to use better tools and better methods. LOTL is a
     forum to diseminate information among ourselves on what works, and to back up that information with
     data that supports it.</p>
   </div>  
   <div class="ltl-home-point span-16 last">
-    <h3>FREEDOM</h3>
+    <h3><%= t ".freedom" %></h3>
     <p>Every methodology claims to manage successful projects, but no methodology can say in advance
     which projects it will manage successfully. LOTL doesnt promote a methodolgy. It provides 
     a flexible system that stays out of the way, allowing group coordination with whatever methods
@@ -25,18 +25,18 @@
 </div>
 
 <div class="ltl-login-form prepend-1 span-6 last">
-  <h2>Sign in</h2>
+  <h2><%= t ".sign-in" %></h2>
   <p style="text-align: center">
-  <%= link_to "create an account", new_user_path %>
+  <%= link_to t(".create-an-account"), new_user_path %>
   </p>
   <form>
-    <label>Email:</label><br/>
+    <label><%= t ".email" %>:</label><br/>
     <input class="span-6" type="text" name="email" />
     <br/>
-    <label>Password:</label><br/>
+    <label><%= t ".password" %>:</label><br/>
     <input class="span-6" type="password" name="password" />
     <br/>
-    <input type="submit" name="submit" value="Sign in" />
+    <input type="submit" name="submit" value="<%= t '.sign-in' %>" />
   </form>
 </div>
 

@@ -1,5 +1,15 @@
 
 en:
+  entrance:
+    home:
+      project-coordination-for-the-future: Project coordination for the future
+      feedback: FEEDBACK
+      learning: LEARNING
+      freedom: FREEDOM
+      sign-in: Sign in
+      email: Email
+      password: Password
+      create-an-account: create an account
   tasks:
     index:
       tasks: Tasks

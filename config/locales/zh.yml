@@ -1,5 +1,15 @@
 
 zh:
+  entrance:
+    home:
+      project-coordination-for-the-future: 未来的团队合作模式
+      feedback: 反馈
+      learning: 学习
+      freedom: 自由
+      sign-in: 登录
+      email: 电子邮件地址
+      password: 密码
+      create-an-account: 创造一个帐户
   tasks:
     index:
       tasks: 任务
@@ -33,5 +43,5 @@ zh:
       collaborators-to-a-project: 合作者
       select-a-project: 选项目
       name: 名字
-      email: 电子邮箱地址
+      email: 电子邮件地址
       git-repository: Git代码库
