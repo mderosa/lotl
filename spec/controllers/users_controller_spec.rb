@@ -24,7 +24,7 @@ describe UsersController do
   # User. As you add validations to User, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {password: "apassword", salt: "asalt", email: "auser@mail.com"}
+    {password: "apassword", email: "auser@mail.com", password_confirmation: "apassword"}
   end
 
   describe "GET index" do
