@@ -4,7 +4,7 @@ describe AdminMailer do
 
   describe "activation_instructions" do
     let(:mail) { 
-      AdminMailer.activation_instructions(User.new(:email => "dude@duderanch.com") )
+      AdminMailer.activation_instructions(User.new(:email => "dude@duderanch.com"), "localhost" )
     }
 
     it "renders the headers" do

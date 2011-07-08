@@ -6,7 +6,8 @@ class AdminMailer < ActionMailer::Base
   #
   #   en.admin_mailer.activation_instructions.subject
   #
-  def activation_instructions(user)
+  def activation_instructions(user, host)
+    @host = host
     @user = user
     mail :to => user.email
   end

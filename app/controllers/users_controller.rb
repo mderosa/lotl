@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        AdminMailer.activation_instructions(@user).deliver
+        AdminMailer.activation_instructions(@user, request.host).deliver
         format.html { redirect_to(activation_instructions_path) }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
