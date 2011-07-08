@@ -10,7 +10,7 @@ Task.delete_all
 Project.delete_all
 User.delete_all
 
-user = User.create!(:password => "password", :salt => "salt", :email => "marc@email.com")
+user = User.create!(:password => "password", :email => "marc@email.com")
 
 project1 = Project.new(:name => "Project1")
 project1.users << user

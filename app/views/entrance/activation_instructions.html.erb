@@ -1,0 +1,17 @@
+
+<% if (not @user.nil?) && @user.errors.any? %>
+<div class="error">
+  <ul>
+    <% @user.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div span-8 prepend-8>
+  <p>
+    You have successfully registered but before you can use LOTL, you have to activate your account.
+    The activation instructions have been sent to your email account.
+  </p>
+</div>

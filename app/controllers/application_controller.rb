@@ -11,9 +11,9 @@ class ApplicationController < ActionController::Base
     end
   end
   
-#  def default_url_options
-#
-#  end
+ def default_url_options
+   {:host => request.host}
+ end
 
   private
 

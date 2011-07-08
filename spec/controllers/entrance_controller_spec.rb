@@ -1,6 +1,23 @@
 require 'spec_helper'
 
 describe EntranceController do
+  render_views
+
+  describe "get activation_instructions" do
+    it "should be successful" do
+      get "activation_instructions"
+      response.should be_success
+    end
+
+    it "should show a warning error message when a user object is available"
+  end
+
+  describe "get activation" do
+    it "should send us back to the activation instruction page when bad info is submitted" do
+      get :activate, :email => "notindb@notindb.com", :token => "bogus token"
+      response.body.should match("LOTL")
+    end
+  end
 
   describe "GET 'home'" do
     it "should be successful" do
@@ -30,7 +47,7 @@ describe EntranceController do
         post :login, :email => "marc@email.com", :password => "yobabyyobaby"
         assigns(:user).should_not be_nil
         submitted = assigns(:submitted_credentials)
-        submitted.errors.length.should eq(1)
+        submitted.errors.length.should eq(2)
       end
       
     end

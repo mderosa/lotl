@@ -2,6 +2,8 @@ Lotl::Application.routes.draw do
 
   match "/home" => 'entrance#home', :via => 'get', :as => 'home'
   match "/login" => 'entrance#login', :via => 'post', :as => 'login'
+  match "/activation_instructions" => "entrance#activation_instructions", :via => 'get', :as => 'activation_instructions'
+  match "/activate" => "entrance#activate", :via => 'get', :as => 'activate'
 
   resources :users
 
@@ -69,3 +71,5 @@ end
 
 
 # error: forgot to add : before keys in a map declaration
+# error: added = between a map key and value
+# error: did not add anything between a map key and value

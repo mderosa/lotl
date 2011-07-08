@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110704033532) do
+ActiveRecord::Schema.define(:version => 20110708082117) do
 
   create_table "projects", :force => true do |t|
     t.string   "name",       :null => false
@@ -54,11 +54,12 @@ ActiveRecord::Schema.define(:version => 20110704033532) do
   add_index "tasks_users", ["user_id"], :name => "index_tasks_users_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "password",   :limit => 64, :null => false
-    t.string   "salt",       :limit => 64, :null => false
-    t.string   "email",                    :null => false
+    t.string   "password",   :limit => 64,                    :null => false
+    t.string   "salt",       :limit => 64,                    :null => false
+    t.string   "email",                                       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "active",                   :default => false, :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
