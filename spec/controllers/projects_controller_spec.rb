@@ -29,7 +29,11 @@ describe ProjectsController do
 
   describe "GET index" do
     it "assigns all projects as @projects" do
+      session[:user_id] = 1
+      
       project = Project.create! valid_attributes
+      user = User.find(1)
+      project.users << user
       get :index
       assigns(:projects).should include(project)
     end
