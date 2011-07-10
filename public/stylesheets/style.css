@@ -62,6 +62,10 @@ header h1 {
     font-size: 120%;
 }
 
+.ltl-project-action {
+    margin-bottom: 1.5em
+}
+
 .ltl-bucket-title #new {
     margin-left: 20px;
 }
@@ -79,3 +83,25 @@ header h1 {
 /*
 error: added commas to three part declaration for border-left
 */
+
+.ltl-form-title > h2 {
+    text-align: center;
+}
+
+.field > label {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    padding-top: 3px;
+}
+
+.field > input[type=checkbox] {
+    margin-top: 0.8em;
+    margin-bottom: 0.5em;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.field > textarea {
+    height: 100px;
+    padding: 1px;
+}

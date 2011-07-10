@@ -1,47 +1,50 @@
 
 <%= form_for(@task, :url => @task.new_record? ? project_tasks_path(params[:project_id]) : 
                                                 project_task_path(params[:project_id], @task)) do |f| %>
-  <% if @task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+<% if @task.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
-      <ul>
-      <% @task.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :specification %><br />
-    <%= f.text_area :specification %>
-  </div>
-  <div class="field">
-    <%= f.label :delivers_user_functionality %><br />
-    <%= f.check_box :delivers_user_functionality %>
-  </div>
-
-  <% if not @task.new_record? %>
-  <div class="field">
-    <%= f.label :progress %><br />
-    <%= f.text_field :progress %>
-  </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :priority %><br />
-    <%= f.text_field :priority %>
-  </div>
-  <div class="field">
-    <%= f.label :namespace %><br />
-    <%= f.text_field :namespace %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <ul>
+    <% @task.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
 <% end %>
+
+<div class="field span-12 last">
+  <%= f.label :title, :class => "span-3" %>
+  <%= f.text_field :title, :class => "span-9 last" %>
+</div>
+<div class="field span-12 last">
+  <%= f.label :specification, :class => "span-3" %>
+  <%= f.text_area :specification, :class => "span-9 last" %>
+</div>
+<div class="field span-12 last">
+  <%= f.label :delivers_user_functionality, :class => "span-3" %>
+  <%= f.check_box :delivers_user_functionality %>
+</div>
+
+<% if not @task.new_record? %>
+<div class="field span-12 last">
+  <%= f.label :progress, :class => "span-3" %>
+  <%= f.select :progress, {"Proposed" => "proposed", "In Progress" => "inProgress", "Delivered" => "delivered"} %>
+</div>
+<% end %>
+
+<div class="field span-12 last">
+  <%= f.label :priority, :class => "span-3" %>
+  <%= f.select :priority, {"" => "", "Low" => "1", "Medium" => "2", "High" => "3"} %>
+</div>
+
+<div class="field span-12 last">
+  <%= f.label :namespace, :class => "span-3" %>
+  <%= f.text_field :namespace, :class => "span-9 last" %>
+</div>
+<div class="actions span-12 last">
+  <%= f.submit %>&nbsp;&nbsp;&nbsp;&nbsp;
+  <%= link_to 'Back', project_tasks_path(params[:project_id]) %>
+</div>
+<% end %>
+

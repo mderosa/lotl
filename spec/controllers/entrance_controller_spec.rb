@@ -9,7 +9,11 @@ describe EntranceController do
       response.should be_success
     end
 
-    it "should show a warning error message when a user object is available"
+    # it "should show a warning error message when a user object is available" do
+    #   post :activate, :email => "notindb@notindb.com", :token => "bogus token"
+    #   response.should have_tag("div.error", nil)
+    # end
+    
   end
 
   describe "get activation" do
@@ -34,7 +38,6 @@ describe EntranceController do
     end
 
     describe "with invalid parameters" do
-      
       it "creates a new :user with a nil value and a :submitted_credentials that has one error message" do
         post :login, :email => "notindb@nowhere.com", :password => "yobabyyobaby"
         assigns(:user).should be_nil
@@ -47,11 +50,29 @@ describe EntranceController do
         post :login, :email => "marc@email.com", :password => "yobabyyobaby"
         assigns(:user).should_not be_nil
         submitted = assigns(:submitted_credentials)
-        submitted.errors.length.should eq(2)
+        submitted.errors.length.should eq(1)
       end
-      
+    end
+
+    describe "with valid user credentials" do
+      before(:each) do
+        @params = {:email => "marc@email.com", :password => "password"}
+      end
+
+      it "should result in redirection to the project list page" do
+        post :login, @params
+        response.should redirect_to(projects_path)
+      end
+
+      it "should store the user object in the session" do 
+        post :login, @params
+        #session[:user_id].should_not be_nil
+        assigns(:current_user).should_not be_nil
+      end
     end
 
   end
 
 end
+
+# error: forgot to add : before key in a map

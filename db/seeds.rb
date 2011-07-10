@@ -11,6 +11,8 @@ Project.delete_all
 User.delete_all
 
 user = User.create!(:password => "password", :email => "marc@email.com")
+user.active = true
+user.save
 
 project1 = Project.new(:name => "Project1")
 project1.users << user

@@ -19,6 +19,7 @@ class EntranceController < ApplicationController
     
     respond_to do |format|
       if (@submitted_credentials.errors.empty?) 
+        self.current_user = @user
         format.html { redirect_to(projects_path) }
         format.xml  { render :xml => @user, :status => :created, :location => @user }
       else
@@ -54,6 +55,7 @@ class EntranceController < ApplicationController
       end
     end
   end
+
 
 end
 

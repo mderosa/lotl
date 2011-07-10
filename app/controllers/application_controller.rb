@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  include SecurityHelper
 
   before_filter :set_locale
 

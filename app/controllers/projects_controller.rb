@@ -4,8 +4,8 @@ class ProjectsController < ApplicationController
   # project. The definition of the recent task activity is At:T E 
   # t1.modified_at > t2.modified_at & n <= 3
   def index
-    @projects = Project.all
-    @project_tasks = active_tasks(@projects)
+    @projects = current_user.projects
+    @project_tasks = recently_active_tasks(@projects)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -86,8 +86,8 @@ class ProjectsController < ApplicationController
 
   private
   
-  # active_tasks :: [{project -> [task]}]
-  def active_tasks(ps)
+  # recently_active_tasks :: [{project -> [task]}]
+  def recently_active_tasks(ps)
     temp = {}
     ps.each do |p|
       ts = Task.where("project_id = ?", p.id).order("updated_at DESC").limit(3)
