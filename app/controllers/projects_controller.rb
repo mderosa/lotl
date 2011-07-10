@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_filter :authorize, :only => [:edit, :update, :destroy]
 
   # Here we get the prjects and the most recent task activity from that 
   # project. The definition of the recent task activity is At:T E 
@@ -96,4 +97,14 @@ class ProjectsController < ApplicationController
     return temp
   end
 
+  def authorize
+    p = Project.find(params[:id])
+    if not p.users.include?(current_user)
+      flash[:notice] = "access to resource denied"
+      redirect_to home_path
+    end
+  end
+
 end
+
+# error: missed a 'end' when copying code into this file

@@ -19,6 +19,7 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe ProjectsController do
+  render_views
 
   # This should return the minimal set of attributes required to create a valid
   # Project. As you add validations to Project, be sure to
@@ -33,6 +34,10 @@ describe ProjectsController do
 
   let(:user) do
     User.find_by_email("marc@email.com")
+  end
+
+  let (:unauth_user) do
+    User.find_by_email("hacker@lulz.com")
   end
 
   describe "GET index" do
@@ -78,9 +83,25 @@ describe ProjectsController do
     end
 
     it "assigns the requested project as @project" do
-      project = Project.create! valid_attributes
+      project = Project.new valid_attributes
+      project.users << user
+      project.save
+
       get :edit, :id => project.id.to_s
       assigns(:project).should eq(project)
+    end
+
+    describe "for unauthorized users" do
+      it "should not allow access to the edit form" do
+        project = Project.new valid_attributes
+        project.users << user
+        project.save 
+
+        login_as(unauth_user)
+        get :edit, :id => project.id.to_s
+        assigns(:project).should eq(nil)
+        response.should redirect_to(home_path)
+      end
     end
   end
 
@@ -132,7 +153,9 @@ describe ProjectsController do
 
     describe "with valid params" do
       it "updates the requested project" do
-        project = Project.create! valid_attributes
+        project = Project.new valid_attributes
+        project.users << user
+        project.save
         # Assuming there are no other projects in the database, this
         # specifies that the Project created on the previous line
         # receives the :update_attributes message with whatever params are
@@ -142,13 +165,19 @@ describe ProjectsController do
       end
 
       it "assigns the requested project as @project" do
-        project = Project.create! valid_attributes
+        project = Project.new valid_attributes
+        project.users << user
+        project.save
+
         put :update, :id => project.id, :project => valid_attributes
         assigns(:project).should eq(project)
       end
 
       it "redirects to the project" do
-        project = Project.create! valid_attributes
+        project = Project.new valid_attributes
+        project.users << user
+        project.save
+
         put :update, :id => project.id, :project => valid_attributes
         response.should redirect_to(project)
       end
@@ -156,7 +185,10 @@ describe ProjectsController do
 
     describe "with invalid params" do
       it "assigns the project as @project" do
-        project = Project.create! valid_attributes
+        project = Project.new valid_attributes
+        project.users << user
+        project.save
+
         # Trigger the behavior that occurs when invalid params are submitted
         Project.any_instance.stub(:save).and_return(false)
         put :update, :id => project.id.to_s, :project => {}
@@ -164,7 +196,9 @@ describe ProjectsController do
       end
 
       it "re-renders the 'edit' template" do
-        project = Project.create! valid_attributes
+        project = Project.new valid_attributes
+        project.users << user
+        project.save
         # Trigger the behavior that occurs when invalid params are submitted
         Project.any_instance.stub(:save).and_return(false)
         put :update, :id => project.id.to_s, :project => {}
@@ -179,14 +213,20 @@ describe ProjectsController do
     end
 
     it "destroys the requested project" do
-      project = Project.create! valid_attributes
+      project = Project.new valid_attributes
+      project.users << user
+      project.save
+
       expect {
         delete :destroy, :id => project.id.to_s
       }.to change(Project, :count).by(-1)
     end
 
     it "redirects to the projects list" do
-      project = Project.create! valid_attributes
+      project = Project.new valid_attributes
+      project.users << user
+      project.save
+      
       delete :destroy, :id => project.id.to_s
       response.should redirect_to(projects_url)
     end

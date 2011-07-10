@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_filter :authorize, :only => [:index, :new, :edit]
+  before_filter :authorize, :only => [:index, :new, :edit, :create, :update, :destroy]
   
   # GET /tasks
   # GET /tasks.xml
