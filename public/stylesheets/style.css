@@ -42,6 +42,10 @@ header h1 {
     margin-top: 0.5em;
 }
 
+.ltl-flash {
+    text-align: center;
+}
+
 .ltl-task-summary {
     border: 1px solid #CCC;
 }

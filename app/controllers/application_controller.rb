@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include SecurityHelper
 
   before_filter :set_locale
+  before_filter :authenticate
 
   def set_locale
     if params[:locale]
@@ -29,5 +30,11 @@ class ApplicationController < ActionController::Base
       end
   end
 
+  def authenticate
+    if not user_authenticated?
+      flash[:notice] = "please login first"
+      redirect_to home_path
+    end
+  end
   
 end

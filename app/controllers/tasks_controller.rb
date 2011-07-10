@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  before_filter :authorize, :only => [:index, :new, :edit]
+  
   # GET /tasks
   # GET /tasks.xml
   def index
@@ -87,4 +89,17 @@ class TasksController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  private 
+
+  def authorize
+    p = Project.find(params[:project_id])
+    if not p.users.include?(current_user)
+      flash[:notice] = "access to resource denied"
+      redirect_to home_path
+    end
+  end
+
 end
+
+# errors: forgot to add : before a map key

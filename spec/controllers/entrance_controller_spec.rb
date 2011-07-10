@@ -66,7 +66,6 @@ describe EntranceController do
 
       it "should store the user object in the session" do 
         post :login, @params
-        #session[:user_id].should_not be_nil
         assigns(:current_user).should_not be_nil
       end
     end

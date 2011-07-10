@@ -27,19 +27,33 @@ describe ProjectsController do
     {name: "aproject"}
   end
 
+  def login_as(u)
+    session[:user_id] = u.id
+  end
+
+  let(:user) do
+    User.find_by_email("marc@email.com")
+  end
+
   describe "GET index" do
+    before(:each) do
+      login_as user
+    end
+
     it "assigns all projects as @projects" do
-      session[:user_id] = 1
-      
       project = Project.create! valid_attributes
-      user = User.find(1)
       project.users << user
+
       get :index
       assigns(:projects).should include(project)
     end
   end
 
   describe "GET show" do
+    before(:each) do
+      login_as user
+    end
+
     it "assigns the requested project as @project" do
       project = Project.create! valid_attributes
       get :show, :id => project.id.to_s
@@ -48,6 +62,10 @@ describe ProjectsController do
   end
 
   describe "GET new" do
+    before(:each) do
+      login_as user
+    end
+
     it "assigns a new project as @project" do
       get :new
       assigns(:project).should be_a_new(Project)
@@ -55,6 +73,10 @@ describe ProjectsController do
   end
 
   describe "GET edit" do
+    before(:each) do
+      login_as user
+    end
+
     it "assigns the requested project as @project" do
       project = Project.create! valid_attributes
       get :edit, :id => project.id.to_s
@@ -63,6 +85,10 @@ describe ProjectsController do
   end
 
   describe "POST create" do
+    before(:each) do
+      login_as user
+    end
+
     describe "with valid params" do
       it "creates a new Project" do
         expect {
@@ -100,6 +126,10 @@ describe ProjectsController do
   end
 
   describe "PUT update" do
+    before(:each) do
+      login_as user
+    end
+
     describe "with valid params" do
       it "updates the requested project" do
         project = Project.create! valid_attributes
@@ -144,6 +174,10 @@ describe ProjectsController do
   end
 
   describe "DELETE destroy" do
+    before(:each) do
+      login_as(user)
+    end
+
     it "destroys the requested project" do
       project = Project.create! valid_attributes
       expect {

@@ -26,8 +26,20 @@ describe UsersController do
   def valid_attributes
     {password: "apassword", email: "auser@mail.com", password_confirmation: "apassword"}
   end
+  
+  def login_as(u)
+    session[:user_id] = u.id
+  end
+
+  let(:user) do
+    User.find_by_email("marc@email.com")
+  end
 
   describe "GET index" do
+    before(:each) do
+      login_as user
+    end
+
     it "assigns all users as @users" do
       user = User.create! valid_attributes
       get :index
@@ -36,6 +48,10 @@ describe UsersController do
   end
 
   describe "GET show" do
+    before(:each) do
+      login_as user
+    end
+
     it "assigns the requested user as @user" do
       user = User.create! valid_attributes
       get :show, :id => user.id.to_s
@@ -44,6 +60,10 @@ describe UsersController do
   end
 
   describe "GET new" do
+    before(:each) do
+      login_as user
+    end
+
     it "assigns a new user as @user" do
       get :new
       assigns(:user).should be_a_new(User)
@@ -51,6 +71,10 @@ describe UsersController do
   end
 
   describe "GET edit" do
+    before(:each) do
+      login_as user
+    end
+
     it "assigns the requested user as @user" do
       user = User.create! valid_attributes
       get :edit, :id => user.id.to_s
@@ -59,6 +83,10 @@ describe UsersController do
   end
 
   describe "POST create" do
+    before(:each) do
+      login_as user
+    end
+
     describe "with valid params" do
       it "creates a new User" do
         expect {
@@ -96,6 +124,10 @@ describe UsersController do
   end
 
   describe "PUT update" do
+    before(:each) do
+      login_as user
+    end
+
     describe "with valid params" do
       it "updates the requested user" do
         user = User.create! valid_attributes
@@ -140,6 +172,10 @@ describe UsersController do
   end
 
   describe "DELETE destroy" do
+    before(:each) do
+      login_as user
+    end
+
     it "destroys the requested user" do
       user = User.create! valid_attributes
       expect {

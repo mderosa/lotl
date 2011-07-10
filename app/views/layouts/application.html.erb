@@ -31,6 +31,12 @@
 
       <%= render "layouts/header" %>
 
+      <% flash.each do |k, v| %>
+      <div class="ltl-flash span-24 last <%= k.to_s %>">
+	<%= v %>
+      </div>
+      <% end %>
+
       <%= yield %>
 
       <%= render "layouts/footer" %>
