@@ -104,4 +104,6 @@ error: added commas to three part declaration for border-left
 .field > textarea {
     height: 100px;
     padding: 1px;
+    font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
+    font-size: 125%;
 }
