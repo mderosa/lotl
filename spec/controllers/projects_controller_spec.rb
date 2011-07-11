@@ -64,6 +64,8 @@ describe ProjectsController do
       get :show, :id => project.id.to_s
       assigns(:project).should eq(project)
     end
+    
+    it "only shows collaborators that are acive"
   end
 
   describe "GET new" do

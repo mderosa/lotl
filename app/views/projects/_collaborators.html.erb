@@ -2,14 +2,14 @@
 <% @project.users.each do |u| %>
 <div>
   <%= u.email %>&nbsp;&nbsp;
-  <a href="#">remove</a>
+  <%= link_to 'Remove', project_collaborator_path(@project, u), :method => :delete %>
 </div>
 <% end %>
 
 <%# form to add a new user %>
-<%= form_for(User.new) do |f| %>
+<%= form_for(User.new, :url => project_collaborators_path(@project)) do |f| %>
 <div class="field span-5 last">
   <%= f.text_field :email %>
-  <%= f.submit %>
+  <%= f.submit "Add collaborator" %>
 </div>  
 <% end %>
