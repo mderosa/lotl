@@ -53,7 +53,10 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.save
-        format.html { redirect_to(project_tasks_path(params[:project_id]), :notice => 'Task was successfully created.') }
+        format.html { 
+          flash[:success] = 'Tast was successfully created'
+          redirect_to(project_tasks_path(params[:project_id])) 
+        }
         format.xml  { render :xml => @task, :status => :created, :location => @task }
       else
         format.html { render :action => "new" }
@@ -69,7 +72,10 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        format.html { redirect_to(project_tasks_path(params[:project_id]), :notice => 'Task was successfully updated.') }
+        format.html { 
+          flash[:success] = 'Task was successfully updated'
+          redirect_to(project_tasks_path(params[:project_id]))
+        }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -35,15 +35,14 @@
   <div class="ltl-project-action span-7 last">
     <span class="large"><%= t ".create" %></span>&nbsp;
     <span><%= t ".a-new-project" %></span>
-    <form class="prepend-1">
-      <label><%= t ".name" %>:</label><br/>
-      <input class="span-6" name="name" type="text"></input>
-      <br/>
-      <label><%= t ".git-repository" %>:</label><br/>
-      <input class="span-6" name="repository" type="text" />
-      <br/>
-      <input type="submit" name="submit" value="<%= t '.create' %>" />
-    </form>
+
+    <%= form_for(Project.new, :html => {:class => "prepend-1"}) do |f| %>
+    <%= f.label :name %><br />
+    <%= f.text_field :name, :class => "span-6" %><br/>
+    <%= f.label :repository %><br/>
+    <%= f.text_field :repository, :class => "span-6" %><br/>
+    <%= f.submit %>
+    <% end %>
   </div>
   
   <div class="ltl-project-action span-7 last">

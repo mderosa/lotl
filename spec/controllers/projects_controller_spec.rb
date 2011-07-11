@@ -121,11 +121,12 @@ describe ProjectsController do
         post :create, :project => valid_attributes
         assigns(:project).should be_a(Project)
         assigns(:project).should be_persisted
+        assigns(:project).users.should include(user)
       end
 
       it "redirects to the created project" do
         post :create, :project => valid_attributes
-        response.should redirect_to(Project.last)
+        response.should redirect_to(projects_path)
       end
     end
 
@@ -141,7 +142,7 @@ describe ProjectsController do
         # Trigger the behavior that occurs when invalid params are submitted
         Project.any_instance.stub(:save).and_return(false)
         post :create, :project => {}
-        response.should render_template("new")
+        response.should redirect_to(projects_path)
       end
     end
   end

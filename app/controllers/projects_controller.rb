@@ -45,13 +45,17 @@ class ProjectsController < ApplicationController
   # POST /projects.xml
   def create
     @project = Project.new(params[:project])
+    @project.users << current_user
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to(@project, :notice => 'Project was successfully created.') }
+        format.html { redirect_to(projects_path) }
         format.xml  { render :xml => @project, :status => :created, :location => @project }
       else
-        format.html { render :action => "new" }
+        format.html { 
+          flash[:error] = @project.errors.full_messages[0] if not @project.valid?
+          redirect_to(projects_path)
+        }
         format.xml  { render :xml => @project.errors, :status => :unprocessable_entity }
       end
     end
