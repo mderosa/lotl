@@ -1,6 +1,6 @@
 
 <% @project.users.each do |u| %>
-<div>
+<div class="span-7 last">
   <%= u.email %>&nbsp;&nbsp;
   <%= link_to 'Remove', project_collaborator_path(@project, u), :method => :delete %>
 </div>
@@ -8,7 +8,7 @@
 
 <%# form to add a new user %>
 <%= form_for(User.new, :url => project_collaborators_path(@project)) do |f| %>
-<div class="field span-5 last">
+<div class="field span-7 last">
   <%= f.text_field :email %>
   <%= f.submit "Add collaborator" %>
 </div>  
