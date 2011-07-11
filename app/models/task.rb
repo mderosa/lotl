@@ -27,7 +27,8 @@ class Task < ActiveRecord::Base
   :progress, :priority, :namespace
 
   validates :title, :presence => true
-  validates :project_id, :numericality => {:only_integer => true}
+  validates :project_id, :numericality => {:only_integer => true},
+                         :presence => true
   validates :progress, :inclusion => {:in => %w(proposed inProgress delivered)}
   validates :priority, :inclusion => {:in => [1,2,3], :allow_nil => true}
 
@@ -80,4 +81,5 @@ class Task < ActiveRecord::Base
 end
 
 
-#error a date was not set to a time, write_attribute(:work_finished_at, next_state) if read_attribute(:work_finished_at).nil? 
+# error: a date was not set to a time, write_attribute(:work_finished_at, next_state) if read_attribute(:work_finished_at).nil? 
+# error: forgot to add a , between key-vals in a map

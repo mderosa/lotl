@@ -66,6 +66,10 @@ header h1 {
     font-size: 120%;
 }
 
+.ltl-projects-list > h5 {
+    margin-bottom: 0.5em;
+}
+
 .ltl-project-action {
     margin-bottom: 1.5em
 }

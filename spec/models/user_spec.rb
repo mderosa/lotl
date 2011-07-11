@@ -74,6 +74,19 @@ describe User do
     end
   end
 
+  describe "projects ordering" do
+    before(:each) do
+      @user = Factory(:user)
+      @p1 = Factory(:project, :name => "Gamma", :users => [@user])
+      @p2 = Factory(:project, :name => "Alpha", :users => [@user])
+      @p3 = Factory(:project, :name => "Delta", :users => [@user])
+    end
+
+    it "should be by alphabetical order" do
+      @user.projects.should == [@p2, @p3, @p1]
+    end
+  end
+
 end
 
 # error: typed is_users_password instead of is_users_password?

@@ -3,7 +3,6 @@ require 'spec_helper'
 describe Project do
 
   describe "validation requirements" do
-
     before(:each) do
       @params = {:name => "project name", :repository => ""}
       @proj = Project.new(@params)
@@ -37,7 +36,6 @@ describe Project do
       p = Project.new(:name => "somthing", :repository => "   ")
       p.repository.should be_nil
     end
-
   end
 
 end

@@ -1,0 +1,15 @@
+
+<% @project.users.each do |u| %>
+<div>
+  <%= u.email %>&nbsp;&nbsp;
+  <a href="#">remove</a>
+</div>
+<% end %>
+
+<%# form to add a new user %>
+<%= form_for(User.new) do |f| %>
+<div class="field span-5 last">
+  <%= f.text_field :email %>
+  <%= f.submit %>
+</div>  
+<% end %>
