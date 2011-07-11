@@ -43,6 +43,9 @@ module TasksHelper
   # deliv    1/1        1/5          1/4                  4-1 + 5(5-4)
   def _calc_delivered_cost(task)
     if task.work_finished_at <= task.delivered_at
+      logger.debug("task id: #{task.id}")
+      logger.debug("delivered_at: #{task.delivered_at}")
+      logger.debug("work_started_at: #{task.work_started_at}")
       _to_days(task.delivered_at - task.work_started_at)
     else
       _to_days(task.delivered_at - task.work_started_at + 5 * (task.work_finished_at - task.delivered_at))
@@ -50,7 +53,7 @@ module TasksHelper
   end
 
   def _to_days(seconds)
-    (seconds/(60 * 60 * 24)).truncate
+    (seconds/(60 * 60 )).truncate
   end
 
   def priority_images(task)

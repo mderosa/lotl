@@ -46,6 +46,13 @@ describe Task do
   end
 
   describe "progress transitions" do
+    it "from proposed straight to delivered should set the work started / finished and delivered dates" do
+      t = Task.new(:title => "test", :progress => "proposed")
+      t.progress = "delivered"
+      t.work_started_at.should_not be_nil
+      t.work_finished_at.should_not be_nil
+      t.delivered_at.should_not be_nil
+    end
 
     it "from proposed to inProgress should set work_started_at" do
       t = Task.new()

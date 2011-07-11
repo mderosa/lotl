@@ -32,7 +32,7 @@ describe TasksHelper do
       task.work_finished_at = Time.utc(2000, 1, 3, 1, 33)
       task.delivered_at = Time.utc(2000, 1, 4, 5, 21)
       cost = helper.calc_cost(task)
-      cost.should eq(3)
+      cost.should eq(75)
     end
 
     it ", for a reworked, delivered task, should return the elapsed days with an additional penalty" do
@@ -42,7 +42,7 @@ describe TasksHelper do
       task.work_finished_at = Time.utc(2000, 1, 5, 1, 33)
       task.delivered_at = Time.utc(2000, 1, 4, 5, 21)
       cost = helper.calc_cost(task)
-      cost.should eq(7)
+      cost.should eq(176)
     end
 
     it "should return a straight penalty calculation for inProgress tasks with a termination date" do
@@ -52,7 +52,7 @@ describe TasksHelper do
       task.work_finished_at = Time.utc(2000, 1, 3, 1, 33)
       task.terminated_at = Time.utc(2000, 1, 6 , 5, 21)
       cost = helper.calc_cost(task)
-      cost.should eq(25)
+      cost.should eq(619)
     end
 
     it "should return a standard days elapsed calculation when delivered_at is null and terminated_at is null" do
@@ -75,7 +75,7 @@ describe TasksHelper do
 
       cost = helper.calc_cost(task)
       cost.should_not be_nil
-      cost.should eq(8)            
+      cost.should eq(196)            
     end
 
   end

@@ -73,8 +73,10 @@ class Task < ActiveRecord::Base
       write_attribute :work_started_at, Time.now
     elsif next_state == 'delivered'
       write_attribute :progress, next_state
-      write_attribute(:work_finished_at, Time.now) if read_attribute(:work_finished_at).nil?
-      write_attribute :delivered_at, Time.now
+      dt = Time.now
+      write_attribute :work_started_at, dt
+      write_attribute :work_finished_at, dt
+      write_attribute :delivered_at, dt
     end
   end
 
