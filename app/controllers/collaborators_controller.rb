@@ -14,7 +14,6 @@ class CollaboratorsController < ApplicationController
       else
         @project.users << @user
         @project.save
-        flash[:success] = 'Collaborator was added'
       end
     else
       flash[:notice] = "#{params[:user][:email]} is not a registered user"

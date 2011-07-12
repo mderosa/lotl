@@ -23,7 +23,6 @@ describe CollaboratorsController do
       it "if c !E Clb-set and c E User-set then Clb-set.size + 1 = C-set'.size" do
         @collaborator = Factory(:user, :email => "collaborator@playnice.com", :active => true)
         post :create, :project_id => @proj.id, :user => {:email => @collaborator.email}
-        flash[:success].should_not be_nil
         assigns(:project).users.length.should eq(2)
       end
 
