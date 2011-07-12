@@ -2,11 +2,16 @@
 <header class="span-24 last">
   <h1><%= link_to 'Law of the Loop', home_path %></h1>
 
+  <% if show_menu?(params) %>
   <div class="span-24 ltl-menu last">
     <nav class="ltl-project-menu span-21">
-      <span class="ltl-current-project">Project Name</span>
+      <span class="ltl-current-project">
+	<%= @project.nil?() ?  '' : @project.name %>
+      </span>
+      <% if show_task_selections?(params) %>
       <a href="#">Tasks</a>
       <a href="#">Statistics</a>
+      <% end %>
     </nav>
 
     <nav class="ltl-application-menu span-3 last">
@@ -14,5 +19,9 @@
     </nav>
   </div>
   <hr class="space"/>
+  <% else %>
+  <hr/>
+  <% end %>
+
 </header>
 

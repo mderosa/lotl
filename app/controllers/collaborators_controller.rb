@@ -4,7 +4,6 @@ class CollaboratorsController < ApplicationController
   # POST /projects/:project_id/collaborators
   # params = {:project_id => n, :user[:email] => m}
   def create
-    puts "enter create"
     @user = User.find_by_email(params[:user][:email])
     @project = Project.find(params[:project_id])
 

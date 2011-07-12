@@ -28,6 +28,11 @@ describe EntranceController do
       get 'home'
       response.should be_success
     end
+
+    it "should not show the site menu" do
+      get "home"
+      response.should_not have_selector("div.ltl-menu")
+    end
   end
 
   describe 'POST login' do

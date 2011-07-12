@@ -57,6 +57,7 @@ class EntranceController < ApplicationController
     end
   end
 
+  private
 
 end
 
