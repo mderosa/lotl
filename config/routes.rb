@@ -1,7 +1,5 @@
 Lotl::Application.routes.draw do
 
-  get "statistics/index"
-
   match "/home" => 'entrance#home', :via => 'get', :as => 'home'
   match "/login" => 'entrance#login', :via => 'post', :as => 'login'
   match "/activation_instructions" => "entrance#activation_instructions", :via => 'get', :as => 'activation_instructions'
@@ -12,6 +10,7 @@ Lotl::Application.routes.draw do
   resources :projects do
     resources :tasks
     resources :collaborators, :only => [:create, :destroy]
+    resources :statistics, :only => [:index]
   end
 
   # The priority is based upon order of creation:

@@ -11,10 +11,8 @@
         </span>
       <% end %>
       <% if show_task_selections?(params) %>
-        <% if show_task_list_selection?(params) %>
-          <%= link_to 'Tasks', project_tasks_path(params[:project_id]) %>
-	<% end %>
-        <a href="#">Statistics</a>
+        <%= link_to 'Tasks', project_tasks_path(params[:project_id]) %>
+	<%= link_to 'Statistics', project_statistics_path(params[:project_id]) %>
       <% end %>
     </nav>
 

@@ -19,11 +19,7 @@ module ApplicationHelper
   end
 
   def show_task_selections?(params)
-    params[:controller] == "tasks" and params[:action] == "index"
-  end
-
-  def show_task_list_selection?(param)
-    params[:controller] == "tasks"
+    !!(params[:controller] =~ /tasks|statistics/)
   end
 
 end
