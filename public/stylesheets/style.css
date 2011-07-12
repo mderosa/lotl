@@ -42,6 +42,29 @@ header h1 {
     margin-top: 0.5em;
 }
 
+header .ltl-menu {
+    border: 1px solid #DDD;
+    background-color: #EEE;
+}
+
+header nav {
+  color: #666;
+  font-family: "Warnock Pro", "Goudy Old Style","Palatino","Book Antiqua", Georgia, serif;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+header nav > span {
+    padding: 0 15px 0 0;
+}
+
+header nav > a {
+    border-left: 1px ridge #333;
+    border-right: 1px groove #333;
+    padding: 0 15px;
+    text-decoration: none;
+}
+
 .ltl-flash {
     text-align: center;
 }

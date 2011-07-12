@@ -1,6 +1,18 @@
 
-<header class="span24 last">
-  <h1>Law of the Loop</h1>
-  <hr/>
+<header class="span-24 last">
+  <h1><%= link_to 'Law of the Loop', home_path %></h1>
+
+  <div class="span-24 ltl-menu last">
+    <nav class="ltl-project-menu span-21">
+      <span class="ltl-current-project">Project Name</span>
+      <a href="#">Tasks</a>
+      <a href="#">Statistics</a>
+    </nav>
+
+    <nav class="ltl-application-menu span-3 last">
+      <%= link_to 'Projects', projects_path %>
+    </nav>
+  </div>
+  <hr class="space"/>
 </header>
 
