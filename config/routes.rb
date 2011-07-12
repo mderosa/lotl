@@ -1,5 +1,7 @@
 Lotl::Application.routes.draw do
 
+  get "statistics/index"
+
   match "/home" => 'entrance#home', :via => 'get', :as => 'home'
   match "/login" => 'entrance#login', :via => 'post', :as => 'login'
   match "/activation_instructions" => "entrance#activation_instructions", :via => 'get', :as => 'activation_instructions'
