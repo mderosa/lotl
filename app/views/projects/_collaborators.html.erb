@@ -2,7 +2,6 @@
 <% @project.users.each do |u| %>
 <div class="span-7 last">
   <%= u.email %>&nbsp;&nbsp;
-  <%= link_to 'Destroy', project_collaborator_path(@project, u), :confirm => 'Are you sure?', :method => :delete %>
   <%= link_to 'Remove', project_collaborator_path(@project, u), :method => :delete %>
 </div>
 <% end %>
