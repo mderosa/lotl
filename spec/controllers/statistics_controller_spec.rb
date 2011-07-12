@@ -13,7 +13,8 @@ describe StatisticsController do
     end
 
     it "should be successful" do
-      get 'index'
+      project = Project.first
+      get :index, :project_id => project.id
       response.should be_success
     end
   end
