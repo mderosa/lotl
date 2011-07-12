@@ -27,30 +27,54 @@ describe CollaboratorsController do
         assigns(:project).users.length.should eq(2)
       end
 
-      it "if c !E Clb-set and c !E Usr-set then Clb-set.size + 1 = Clb-set'.size and Usr.size + 1 = Usr'.size and email"
-    end
-
-    describe "page flow" do
-      it "non email format => project_path w/form validation error, bad format"
-      it "if c E C-set                     => project_path w/ flash notice, already collaborator"
-      it "if c !E Clb-set and c E User-set => project_path w/ flash successe"
-      it "if c !E Clb-set and c !E Usr-set => project_path w/ flash sucess, has been invited"
     end
 
     describe "security" do
-      it "should only allow project collaborators to add an delete collaborators"
+      it "should only allow project collaborators to add collaborators" do
+        bad_guy = Factory(:user, :email => "unathorized@email.com")
+        collaborator = Factory(:user, :email => "collaborator@playnice.com", :active => true)
+        login_as(bad_guy)
+        post :create, :project_id => @proj.id, :user => collaborator
+        response.should redirect_to(home_path)
+      end
     end
   end
 
-  describe "PUT'delete'" do
-    it "c !E Clb-set => project_path w/ flash error message"
-    it "c E Clb-set => project_path w/ flash success message"
-
-    describe "security" do
+  # non of the below seem to be getting through to the to delete method but they seems to be 
+  # going somewhere ?? beats me
+  describe "DELETE destroy" do
+    before(:each) do
+      @user1 = Factory(:user, :email => "excellent@excellent.com")
+      @user2 = Factory(:user, :email => "mostexcellent@excellent.com")
+      @proj = Factory(:project, :users => [@user1, @user2])
+      login_as(@user1)
     end
+
+    it "c !E Clb-set => project_path w/ flash error message" do
+      @user = Factory(:user)
+      delete :destroy, :project_id => @proj.id.to_s, :id => @user.id.to_s
+      flash[:notice].should_not be_nil
+      assigns(:project).users.length.should eq(2)
+      response.should redirect_to(edit_project_path(@proj))
+    end
+
+    it "c E Clb-set => project_path w/ flash success message" do
+      delete :destroy, :project_id => @proj.id, :id => @user2.id
+      assigns(:project).users.length.should eq(1)
+      response.should redirect_to(edit_project_path(@proj))
+    end
+
+    it "if a user removes himself from a project then he should be redirected to the project list page" do
+      delete :destroy, :project_id => @proj.id, :id => @user1.id
+      assigns(:project).users.length.should eq(1)
+      response.should redirect_to(projects_path)
+    end
+
   end
 
 end
 
 # error: did not finish entering ending ')'s
 # error: typo describe was 'describle'
+# error: in my tests I never logged in and couldnt figure out what was going on, wasted a lot of time
+# error: forgot to add : before map key
