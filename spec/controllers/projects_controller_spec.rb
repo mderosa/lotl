@@ -182,7 +182,7 @@ describe ProjectsController do
         project.save
 
         put :update, :id => project.id, :project => valid_attributes
-        response.should redirect_to(project)
+        response.should redirect_to(projects_path)
       end
     end
 
