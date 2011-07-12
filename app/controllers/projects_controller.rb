@@ -18,6 +18,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1.xml
   def show
     @project = Project.find(params[:id])
+    set_current_project
 
     respond_to do |format|
       format.html # show.html.erb
@@ -39,6 +40,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1/edit
   def edit
     @project = Project.find(params[:id])
+    set_current_project
   end
 
   # POST /projects
@@ -107,6 +109,10 @@ class ProjectsController < ApplicationController
       flash[:notice] = "access to resource denied"
       redirect_to home_path
     end
+  end
+
+  def set_current_project
+    session[:project_name] = @project.name
   end
 
 end

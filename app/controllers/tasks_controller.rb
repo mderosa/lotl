@@ -5,6 +5,8 @@ class TasksController < ApplicationController
   # GET /tasks.xml
   def index
     @project = Project.find(params[:project_id])
+    set_current_project 
+
     @proposed_tasks = Task.where("progress = 'proposed' AND project_id = :project_id", params)
       .order("priority DESC").limit(15).offset(0)
     @inProgress_tasks = Task.where("progress = 'inProgress' AND project_id = :project_id", params)
@@ -104,6 +106,10 @@ class TasksController < ApplicationController
       flash[:notice] = "access to resource denied"
       redirect_to home_path
     end
+  end
+
+  def set_current_project
+    session[:project_name] = @project.name
   end
 
 end
