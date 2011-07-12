@@ -7,7 +7,7 @@
     <nav class="ltl-project-menu span-21">
       <% if show_current_project? %>
         <span class="ltl-current-project">
-  	<%= current_project %>
+  	<%= current_project %>:
         </span>
       <% end %>
       <% if show_task_selections?(params) %>
@@ -17,7 +17,7 @@
     </nav>
 
     <nav class="ltl-application-menu span-3 last">
-      <%= link_to 'Projects', projects_path %>
+      <%= link_to 'Home', projects_path %>
     </nav>
   </div>
   <hr class="space"/>
