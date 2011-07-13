@@ -1,5 +1,11 @@
 
 <div class="ltl-chart span-24 last">
-  <p style="text-align: center">put chart here</p>
+
+  <%= javascript_tag "var xbardata = #{JSON.dump(to_control_chart(@deliveries_per_day))}" %>
+
+
+  <div id="xbar"></div>
+  <%= javascript_include_tag "controlchart" %>
+
 </div>
 

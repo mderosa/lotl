@@ -103,8 +103,20 @@ describe Task do
 
   end
 
+  describe "database operations" do
+    it "should be able to query deliveries per day" do
+      Task.should respond_to(:delivery_count_per_day)
+    end
+
+    it "should provide a delivery_count_per_day method which returns an array" do
+      rslt = Task.delivery_count_per_day(1)
+      rslt.should be_instance_of Array
+    end
+
+  end
+
 end
 
 #error typed in .. between class and method call
 #error typed t.progess missing an r in progress
-
+#error typed rstl instead of rslt

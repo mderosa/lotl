@@ -11,5 +11,31 @@ require 'spec_helper'
 #   end
 # end
 describe StatisticsHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+  before(:each) do
+    @data = [{"delivered_at" => "2011-07-03", "count" => "3"}, {"delivered_at" => "2011-07-04", "count" => "7"}]
+  end
+
+  describe "data conversion to our control chart" do
+    it "should have an xbarbar element equal to 5" do
+      rslt = to_control_chart(@data)
+      rslt[:xbarbar].should eq(5)
+    end
+
+    it "should have an xbarbar of nil when the data is empty" do
+      rslt = to_control_chart([])
+      rslt[:xbarbar].should be_nil
+    end
+
+    it "should not allow lcl to be less than zero" do
+      rslt = to_control_chart(@data)
+      rslt[:xbarbar].should eq(5)
+
+      rslt[:labels][0].should  eq("2011-07-03")
+      rslt[:subgroupavgs][0].should eq(3)
+    end
+
+
+  end
+
 end

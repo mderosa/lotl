@@ -50,6 +50,18 @@ class Task < ActiveRecord::Base
     end
   end
 
+  def self.delivery_count_per_day(project_id)
+    id = project_id.to_i
+    sql = "SELECT date(delivered_at) as delivered_at, count(*)
+FROM tasks
+WHERE delivered_at is not null
+AND project_id = #{id}
+AND delivered_at > now()::date - 30
+GROUP BY date(delivered_at)
+ORDER BY date(delivered_at)"
+    Task.connection.select_all sql
+  end
+
   private
 
   def update_progress_from_delivered(next_state)
@@ -79,6 +91,8 @@ class Task < ActiveRecord::Base
       write_attribute :delivered_at, dt
     end
   end
+
+
 
 end
 

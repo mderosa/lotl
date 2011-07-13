@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe StatisticsController do
+  render_views
 
   def login_as(user)
     session[:user_id] = user.id
@@ -17,6 +18,7 @@ describe StatisticsController do
       get :index, :project_id => project.id
       response.should be_success
     end
+
   end
 
 end
