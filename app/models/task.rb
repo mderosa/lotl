@@ -50,13 +50,14 @@ class Task < ActiveRecord::Base
     end
   end
 
-  def self.delivery_count_per_day(project_id)
+  def self.delivery_count_per_day(project_id, from, to)
     id = project_id.to_i
     sql = "SELECT date(delivered_at) as delivered_at, count(*)
 FROM tasks
 WHERE delivered_at is not null
 AND project_id = #{id}
-AND delivered_at > now()::date - 30
+AND delivered_at >= '#{from}'::date
+AND delivered_at < '#{to}'::date
 GROUP BY date(delivered_at)
 ORDER BY date(delivered_at)"
     Task.connection.select_all sql

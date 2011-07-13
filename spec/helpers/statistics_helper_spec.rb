@@ -34,7 +34,13 @@ describe StatisticsHelper do
       rslt[:labels][0].should  eq("2011-07-03")
       rslt[:subgroupavgs][0].should eq(3)
     end
-
+    
+    it "should fill in any gaps in the date sequence" do
+      data = @data << {"delivered_at" => "2011-07-07", "count" => "5"}
+      rslt = fill_date_gaps(data, Date.parse("2011-07-01"), Date.parse("2011-07-10"))
+      rslt.length.should eq(10)
+    end
+    
 
   end
 

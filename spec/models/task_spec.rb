@@ -109,7 +109,8 @@ describe Task do
     end
 
     it "should provide a delivery_count_per_day method which returns an array" do
-      rslt = Task.delivery_count_per_day(1)
+      t = Time.now.utc.to_date
+      rslt = Task.delivery_count_per_day(1, t -1, t)
       rslt.should be_instance_of Array
     end
 
