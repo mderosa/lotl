@@ -39,6 +39,10 @@ describe StatisticsHelper do
       data = @data << {"delivered_at" => "2011-07-07", "count" => "5"}
       rslt = fill_date_gaps(data, Date.parse("2011-07-01"), Date.parse("2011-07-10"))
       rslt.length.should eq(10)
+      rslt.each do |e|
+        e["delivered_at"].should_not be_nil
+      end
+        
     end
     
 

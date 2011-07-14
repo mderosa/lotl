@@ -2,14 +2,9 @@ require 'date'
 
 module StatisticsHelper
 
-  # takes a array of the form [{:delivered_at => d, :count => 3}] and transforms it to
-  #                 	var xbardata = {
-  #                    	"xbarbar": nil | number,
-  #                     "xbarucl": nil | number,
-  #                     "xbarlcl": nil | number,
-  #                     "subgroupavgs": []
-  #                     "labels": []
-  #             	};
+  # to_control_chart :: [{"delivered_at" => String, "count" => Int}] -> {:xbarbar: Maybe Int, :xbarucl: Maybe Int,
+  #                                                                      :xbarlcl: Maybe Int, :subgroupavgs: [Int]
+  #                                                                      :labels: [String]}
   def to_control_chart(data)
     temp = {:total => 0, :xbarbar => nil, :xbarucl => nil, :xbarlcl => nil, :subgroupavgs => [], :labels => []}
     
@@ -29,12 +24,13 @@ module StatisticsHelper
     return temp
   end
 
+  # fill_date_gaps :: [{"delivered_at" => String, "count" => Int}] -> Date -> Date -> [{"delivered_at" => String, "count" => Int}]
   def fill_date_gaps(data, from, to)
     filled = []
     (from..to).each do |rng_date|
       db_date = data.first['delivered_at'] unless data.first.nil?
       if db_date.nil? or rng_date < Date.parse(db_date)
-        filled << {:delivered_at => rng_date.to_s, :count => 0}
+        filled << {"delivered_at" => rng_date.to_s, "count" => 0}
       elsif rng_date == Date.parse(db_date)
         filled << data.shift
       else
