@@ -1,19 +1,19 @@
 
 <div class="ltl-form-title prepend-3 span-18 append-3 last">
-  <h2>Edit project</h2>
+  <h2><%= t ".edit-project" %></h2>
 
   <div class="span-10">
-    <h3>Settings</h3>
+    <h3><%= t ".settings" %></h3>
     <%= render 'form' %>
   </div>
 
   <div class="prepend-1 span-7 last">
-    <h3>Collaborators</h3>
+    <h3><%= t ".collaborators" %></h3>
     <%= render 'collaborators' %>
   </div>
   
   <div class="span-16">
-      <%= link_to 'Back', projects_path %>
+      <%= link_to t(".back"), projects_path %>
   </div>
 </div>
 

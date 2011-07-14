@@ -29,6 +29,15 @@ zh:
       delivered-to-user: 发布给用户
       deployed-on: 发布日期
   projects:
+  projects:
+    edit:
+      edit-project: 编辑项目
+      settings: 设置
+      collaborators: 合作者
+      back: 回去
+    collaborators:
+      add-collaborator: 加合作者
+      remove: 移除
     index:
       proposed: 提出了
       inProgress: 在进行
@@ -45,3 +54,20 @@ zh:
       name: 名字
       email: 电子邮件地址
       git-repository: Git代码库
+      your-projects: 你的项目
+      actions: 命令
+      edit: 编辑
+      create-a-project: 创造一个项目
+  activerecord:
+    models:
+      project: 项目
+      user: 用户
+      task: 任务
+    attributes:
+      project:
+        name: 名字
+        repository: 代码库
+  helpers:
+    submit:
+      create: 创造%{model}
+      update: 更新%{model}

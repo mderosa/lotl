@@ -29,6 +29,14 @@ en:
       delivered-to-user: Delivered to User
       deployed-on: Deployed on
   projects:
+    edit:
+      edit-project: Edit project
+      settings: Settings
+      collaborators: Collaborators
+      back: Back
+    collaborators:
+      add-collaborator: Add collaborator
+      remove: Remove
     index:
       proposed: Proposed
       inProgress: In Progress
@@ -45,3 +53,20 @@ en:
       name: Name
       email: Email
       git-repository: Git repository
+      your-projects: Your Projects
+      actions: Actions
+      edit: Edit
+      create-a-project: Create a Project
+  activerecord:
+    models:
+      project: Project
+      user: User
+      task: Task
+    attributes:
+      project:
+        name: Name
+        repository: Repository
+  helpers:
+    submit:
+      create: Create %{model}
+      update: Update %{model}
