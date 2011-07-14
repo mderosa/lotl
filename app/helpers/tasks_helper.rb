@@ -56,8 +56,12 @@ module TasksHelper
     (seconds/(60 * 60 )).truncate
   end
 
-  def priority_images(task)
+  def priority_images_display(task)
 
+  end
+
+  def user_functionality_display(uf)
+    uf == true ? 'Y' : 'N'
   end
 
 end
