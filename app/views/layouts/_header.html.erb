@@ -11,13 +11,13 @@
         </span>
       <% end %>
       <% if show_task_selections?(params) %>
-        <%= link_to 'Tasks', project_tasks_path(params[:project_id]) %>
-	<%= link_to 'Statistics', project_statistics_path(params[:project_id]) %>
+        <%= link_to t(".tasks"), project_tasks_path(params[:project_id]) %>
+	<%= link_to t(".statistics"), project_statistics_path(params[:project_id]) %>
       <% end %>
     </nav>
 
     <nav class="ltl-application-menu span-3 last">
-      <%= link_to 'Home', projects_path %>
+      <%= link_to t(".home"), projects_path %>
     </nav>
   </div>
   <hr class="space"/>

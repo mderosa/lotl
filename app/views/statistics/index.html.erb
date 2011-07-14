@@ -1,15 +1,15 @@
 
 <div class="ltl-chart span-24 last">
-  <h2>Deliveries per Day</h2>
+  <h2><%= t ".deliveries-per-day" %></h2>
 
   <%= javascript_tag "var xbardata = #{JSON.dump(@chart_data)}" %>
   <div id="xbar"></div>
   <%= javascript_include_tag "controlchart" %>
 
   <div class="ltl-stats span-12 prepend-1 loud">
-    Upper control limit (ucl): <%= @chart_data[:xbarucl] %><br/>
-    Process average (avg): <%= @chart_data[:xbarbar] %><br/>
-    Lower control limit (lcl): <%= @chart_data[:xbarlcl] %>
+    <%= t ".upper-control-limit" %> (ucl): <%= @chart_data[:xbarucl] %><br/>
+    <%= t ".process-average" %> (avg): <%= @chart_data[:xbarbar] %><br/>
+    <%= t ".lower-control-limit" %> (lcl): <%= @chart_data[:xbarlcl] %>
   </div>
   <div class="ltl-stats-explanation span-10 last quiet small append-1">
     Attempt to raise the average number of deliveries per day. If data exceeds the ucl then the group is probably 

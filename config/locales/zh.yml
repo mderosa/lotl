@@ -10,7 +10,30 @@ zh:
       email: 电子邮件地址
       password: 密码
       create-an-account: 创造一个帐户
+  statistics:
+    index:
+      deliveries-per-day: 每天的发布次数
+      upper-control-limit: 控制上线
+      process-average: 过程平均
+      lower-control-limit: 控制下线
+  layouts:
+    header:
+      tasks: 任务
+      statistics: 统计
+      home: 首页
   tasks:
+    edit:
+      edit-task: 编辑任务
+    form:
+      back: 回去
+      proposed: 提出了
+      inProgress: 再进行
+      delivered: 发布了
+      low: 低
+      medium: 中
+      high: 高
+    new:
+      new-task: 新任务
     index:
       tasks: 任务
       title: 标题
@@ -67,6 +90,13 @@ zh:
       project:
         name: 名字
         repository: 代码库
+      task:
+        title: 标题
+        specification: 规格
+        progress: 进度
+        priority: 优先级
+        namespace: 命名空间
+        delivers_user_functionality: 会提供一个用户功能
   helpers:
     submit:
       create: 创造%{model}

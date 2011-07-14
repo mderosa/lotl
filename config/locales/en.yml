@@ -10,7 +10,30 @@ en:
       email: Email
       password: Password
       create-an-account: create an account
+  statistics:
+    index:
+      deliveries-per-day: Deliveries per Day
+      upper-control-limit: Upper control limit
+      process-average: Process average
+      lower-control-limit: Lower control limit
+  layouts:
+    header:
+      tasks: Tasks
+      statistics: Statistics
+      home: Home
   tasks:
+    edit:
+      edit-task: Edit task
+    form:
+      back: Back
+      proposed: Proposed
+      inProgress: In progress
+      delivered: Delivered
+      low: Low
+      medium: Medium
+      high: High
+    new:
+      new-task: New task
     index:
       tasks: Tasks
       title: Title
@@ -66,6 +89,13 @@ en:
       project:
         name: Name
         repository: Repository
+      task:
+        title: Title
+        specification: Specification
+        progress: Progress
+        priority: Priority
+        namespace: Namespace
+        delivers_user_functionality: Delivers user functionality
   helpers:
     submit:
       create: Create %{model}
