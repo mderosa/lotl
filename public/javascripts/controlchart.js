@@ -1,77 +1,75 @@
 
-var yScale = (function (ls) {
-	var max = 0;
-	for (var i = 0; i <= ls.length; i++) {
-		if (ls[i] > max) {max = ls[i];}
-	}
-	return 240/max;
-})(xbardata.subgroupavgs);
-
-var xSpacing, xOffset;
-if (xbardata.subgroupavgs.length <= 46) {
-	xSpacing = 20; xOffset = 5;
-} else {
-	xSpacing = 10; xOffset = 10;
-}
+var pageWidth = 950,
+    panelMargin = 60,
+    panelWidth = pageWidth - 2 * panelMargin,
+    panelHeight = 300,
+    yMaxData = pv.max(xbardata.subgroupavgs),
+    yMax = pv.max([yMaxData, xbardata.xbarucl]) + 1,
+    fnYScale = pv.Scale.linear(0, yMax).range(0, panelHeight),
+    fnXScale = pv.Scale.linear(0, xbardata.subgroupavgs.length - 1).range(0, panelWidth);
 
 var pnl = new pv.Panel()
-		.canvas("xbar")
-		.width(934)
-		.height(300)
-		.bottom(20)
-		.top(20)
-		.left(20)
-		.right(20);
-		
+    .canvas("xbar")
+    .width(panelWidth)
+    .height(panelHeight)
+    .left(panelMargin).right(panelMargin).bottom(panelMargin + 10).top(5)
+    .strokeStyle("#CCC");
+
+// add dots
 pnl.add(pv.Dot)
-		.data(xbardata.subgroupavgs)
-		.left(function(d) {return this.index * xSpacing + xOffset;})
-		.bottom(function(d){return d * yScale;});
-		
-var rlLeft = pnl.add(pv.Rule)
-	.left(0)
-	.strokeStyle("#aaa");
-rlLeft.add(pv.Label)
-	.text("Hours")
-	.left(-5)
-	.top(100)
-	.textAngle(-Math.PI/2);
-		
-var rlRight = pnl.add(pv.Rule)
-	.right(0)
-	.strokeStyle("#aaa");
-rlRight.add(pv.Label)
-	.text("Days")
-	.right(-15)
-	.top(100)
-	.textAngle(-Math.PI/2);
-				
+    .data(xbardata.subgroupavgs)
+    .left(function() {return fnXScale(this.index)})
+    .bottom(fnYScale);
+
+// add vertical rules / x axis labels
+pnl.add(pv.Rule)
+    .data(fnXScale.ticks())
+    .strokeStyle("#eee")
+    .left(fnXScale)
+  .anchor("bottom").add(pv.Label)
+    .text(function(d) {
+	    if (this.index % 2 == 0) {
+		return xbardata.labels[d];
+	    }
+	})
+    .textAngle(Math.PI/2.3)
+    .textAlign("left")
+    .textBaseline("center")
+    .textMargin(5);
+
+// add horizontal rules / y axis labels
+pnl.add(pv.Rule)
+    .data(fnYScale.ticks())
+    .strokeStyle("#eee")
+    .bottom(fnYScale)
+    .anchor("left").add(pv.Label)
+    .text(fnYScale.tickFormat);
+
+// add y axis label		
+pnl.anchor("left").add(pv.Label)
+    .text("Deliveries per Day (d)")
+    .textAlign("center")
+    .textAngle(-Math.PI/2)
+    .textMargin(20)
+    .textBaseline("bottom")
+    .font("12px sans-serif")
+
+// add right hand side y axis labels		
 var hrule = pnl.add(pv.Rule)
-			.data([0, xbardata.xbarbar, xbardata.xbarucl])
-			.bottom(function(d) {return d * yScale})
-			.strokeStyle("#aaa")
-			.add(pv.Label)
-				.text(function(d) {return Math.round(d);})
-				.textAlign("right")
-				.textBaseline("middle");
-hrule.add(pv.Label)
-	.text(function(d) {return Math.round(d/24);})
-	.right(0)
-	.textAlign("left")
-	.textBaseline("middle");
-	
-pnl.add(pv.Label)
-	.left(934/2)
-	.top(320)
-	.textAlign("center")	
-	.text("Earlier -> Later");
-	
-pnl.add(pv.Label)
-	.left(934/2)
-	.top(25)
-	.textAlign("center")
-	.font(15 + "px sans-serif")
-	.text("Work In Progress History");
+    .data(function() {
+	    if (xbardata.xbarlcl != 0) {
+		return [[xbardata.xbarlcl, "lcl"], [xbardata.xbarbar, "<d>"], [xbardata.xbarucl, "ucl"]]
+	    } else {
+		return [[xbardata.xbarbar, "<d>"], [xbardata.xbarucl, "ucl"]]
+	    }
+	}())
+    .bottom(function(d) {return fnYScale(d[0])})
+    .strokeStyle("#aaa")
+    .anchor("right").add(pv.Label)
+        .text(function(d) {return d[1]})
+        .textAlign("left")
+        .textBaseline("middle")
+    .textMargin(5);
 
 pnl.render();
 
