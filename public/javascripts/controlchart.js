@@ -47,7 +47,7 @@ pnl.add(pv.Rule)
 
 // add y axis label		
 pnl.anchor("left").add(pv.Label)
-    .text("Deliveries per Day (d)")
+    .text("Deliveries per Day")
     .textAlign("center")
     .textAngle(-Math.PI/2)
     .textMargin(20)
@@ -58,9 +58,9 @@ pnl.anchor("left").add(pv.Label)
 var hrule = pnl.add(pv.Rule)
     .data(function() {
 	    if (xbardata.xbarlcl != 0) {
-		return [[xbardata.xbarlcl, "lcl"], [xbardata.xbarbar, "<d>"], [xbardata.xbarucl, "ucl"]]
+		return [[xbardata.xbarlcl, "lcl"], [xbardata.xbarbar, "avg"], [xbardata.xbarucl, "ucl"]]
 	    } else {
-		return [[xbardata.xbarbar, "<d>"], [xbardata.xbarucl, "ucl"]]
+		return [[xbardata.xbarbar, "avg"], [xbardata.xbarucl, "ucl"]]
 	    }
 	}())
     .bottom(function(d) {return fnYScale(d[0])})

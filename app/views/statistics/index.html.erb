@@ -6,14 +6,14 @@
   <div id="xbar"></div>
   <%= javascript_include_tag "controlchart" %>
 
-  <div class="ltl-stats span-12">
-    Upper control limit: <%= @chart_data[:xbarucl] %><br/>
-    Process average: <%= @chart_data[:xbarbar] %><br/>
-    Lower control limit: <%= @chart_data[:xbarlcl] %>
+  <div class="ltl-stats span-12 prepend-1 loud">
+    Upper control limit (ucl): <%= @chart_data[:xbarucl] %><br/>
+    Process average (avg): <%= @chart_data[:xbarbar] %><br/>
+    Lower control limit (lcl): <%= @chart_data[:xbarlcl] %>
   </div>
-  <div class="ltl-stats-explanation span-12 last">
-    Attempt to raise the average number of deliveries per day. If the ucl is exceeded then the group is probably 
-    grouping all their deliveries together in on 'big bang'. If the lcl is fallen below then the group is
+  <div class="ltl-stats-explanation span-10 last quiet small append-1">
+    Attempt to raise the average number of deliveries per day. If data exceeds the ucl then the group is probably 
+    grouping all their deliveries together in on 'big bang'. If the data falls below the lcl then the group is
     losing velocity. 
   </div>
 
