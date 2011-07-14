@@ -56,8 +56,12 @@ module TasksHelper
     (seconds/(60 * 60 )).truncate
   end
 
-  def priority_images_display(task)
-
+  def priority_image(threshold, task)
+    if task.priority.nil? || task.priority < threshold
+      "star-off.gif"
+    else 
+      "star-on.gif"
+    end
   end
 
   def user_functionality_display(uf)

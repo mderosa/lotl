@@ -14,7 +14,10 @@
 	</div>
 	<div class="ltl-task-colab span-4 prepend-1">mderosa</div>
 	<div class="ltl-task-info span-3 last quiet">
-	  <%= t ".priority" %>: <%= task.priority %>
+	  <%= t ".priority" %>: 
+	  <%= image_tag priority_image(1, task) %>
+	  <%= image_tag priority_image(2, task) %>
+	  <%= image_tag priority_image(3, task) %>
 	  <br/>
 	  <%= t ".user-functionality" %>: <%= user_functionality_display task.delivers_user_functionality %>
 	</div>

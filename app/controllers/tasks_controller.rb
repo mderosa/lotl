@@ -75,7 +75,6 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.update_attributes(params[:task])
         format.html { 
-          flash[:success] = 'Task was successfully updated'
           redirect_to(project_tasks_path(params[:project_id]))
         }
         format.xml  { head :ok }
