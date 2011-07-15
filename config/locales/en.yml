@@ -96,7 +96,12 @@ en:
         priority: Priority
         namespace: Namespace
         delivers_user_functionality: Delivers user functionality
-  helpers:
+    errors:
+      models:
+        task:
+          attributes:
+            title:
+              blank: The title can not be blank
     submit:
       create: Create %{model}
       update: Update %{model}

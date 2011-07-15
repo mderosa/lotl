@@ -97,6 +97,12 @@ zh:
         priority: 优先级
         namespace: 命名空间
         delivers_user_functionality: 会提供一个用户功能
+    errors:
+      models:
+        task:
+          attributes:
+            title:
+              blank: 标题不能为空
   helpers:
     submit:
       create: 创造%{model}
