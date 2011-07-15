@@ -12,7 +12,9 @@
 	  <%= link_to(truncate(task.title, :length => 47), 
 	              edit_project_task_path(@project, task)) %>
 	</div>
-	<div class="ltl-task-colab span-4 prepend-1">mderosa</div>
+	<div class="ltl-task-colab span-4 prepend-1">
+	  <%= task.collaborators %>&nbsp;
+	</div>
 	<div class="ltl-task-info span-3 last quiet">
 	  <%= t ".priority" %>: 
 	  <%= image_tag priority_image(1, task) %>
@@ -35,7 +37,9 @@
 	  <%= link_to(truncate(task.title, :length => 47), 
 	      edit_project_task_path(@project, task)) %>
 	</div>
-	<div class="ltl-task-colab span-4 prepend-1">mderosa</div>
+	<div class="ltl-task-colab span-4 prepend-1">
+	  <%= task.collaborators %>&nbsp;
+	</div>
 	<div class="ltl-task-info span-3 last quiet">
 	  <%= t ".cost" %>: <%= calc_cost task %>
 	  <br/>
@@ -55,7 +59,9 @@
 	  <%= link_to(truncate(task.title, :length => 47), 
 	      edit_project_task_path(@project, task)) %>
 	</div>
-	<div class="ltl-task-colab span-4 prepend-1">mderosa</div>
+	<div class="ltl-task-colab span-4 prepend-1">
+	  <%= task.collaborators %>&nbsp;
+	</div>
 	<div class="ltl-task-info span-3 last quiet">
 	  <%= t ".cost" %>: <%= calc_cost task %>
 	  <br/>

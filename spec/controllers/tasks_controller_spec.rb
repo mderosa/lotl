@@ -98,24 +98,30 @@ describe TasksController do
   end
 
   describe "POST create" do
-    #   describe "with valid params" do
-    #     it "creates a new Task" do
-    #       expect {
-    #         post :create, :task => valid_attributes
-    #       }.to change(Task, :count).by(1)
-    #     end
+    before(:each) do
+      login_as(auth_user)
+      @project = Factory(:project, :users => [auth_user])
+    end
+    
+    describe "with valid params" do
+      it "creates a new Task" do
+        expect {
+          post :create, :task => valid_attributes, :project_id => @project.id
+        }.to change(Task, :count).by(1)
+      end
 
-    #     it "assigns a newly created task as @task" do
-    #       post :create, :task => valid_attributes
-    #       assigns(:task).should be_a(Task)
-    #       assigns(:task).should be_persisted
-    #     end
+      it "assigns a newly created task as @task" do
+        post :create, :task => valid_attributes, :project_id => @project.id
+        assigns(:task).should be_a(Task)
+        assigns(:task).should be_persisted
+        auth_user.email.should match(assigns(:task).collaborators)
+      end
 
     #     it "redirects to the created task" do
     #       post :create, :task => valid_attributes
     #       response.should redirect_to(Task.last)
     #     end
-    #   end
+    end
 
     #   describe "with invalid params" do
     #     it "assigns a newly created but unsaved task as @task" do
@@ -153,6 +159,8 @@ describe TasksController do
       it "assigns the requested task as @task" do
         put :update, :id => @def_task.id, :task => valid_attributes, :project_id => @def_task.project_id
         assigns(:task).should eq(@def_task)
+        assigns(:task).collaborators.should_not be_nil
+        auth_user.email.should match(assigns(:task).collaborators)
       end
 
       it "redirects to the task" do

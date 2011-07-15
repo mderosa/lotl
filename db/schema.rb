@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110708082117) do
+ActiveRecord::Schema.define(:version => 20110715033007) do
 
   create_table "projects", :force => true do |t|
     t.string   "name",       :null => false
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20110708082117) do
     t.string   "namespace"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "collaborators"
   end
 
   add_index "tasks", ["project_id"], :name => "index_tasks_on_project_id"

@@ -116,6 +116,31 @@ describe Task do
 
   end
 
+  describe "collaborators property" do 
+    it "each user name added to the collaborators string should be unique" do
+      t = Task.new
+      u = User.new
+      u.email = "msderosa@test.com"
+
+      t.add_collaborator u
+      t.collaborators.should eq("msderosa")
+      t.add_collaborator u
+      t.collaborators.should eq("msderosa")
+    end
+
+    it "should be able to contain the names of several users" do
+      u1 = User.new
+      u1.email = "one@number.com"
+      u2 = User.new
+      u2.email = "two@number.com"
+
+      t = Task.new
+      t.add_collaborator u1
+      t.add_collaborator u2
+      t.collaborators.should eq("one, two")
+    end
+  end
+
 end
 
 #error typed in .. between class and method call

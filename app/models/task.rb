@@ -63,6 +63,20 @@ ORDER BY date(delivered_at)"
     Task.connection.select_all sql
   end
 
+  def add_collaborator(user)
+    pos = (user.email =~ /@/) - 1
+    user_name = user.email[0..pos]
+
+    cs = []
+    if not read_attribute(:collaborators).nil?
+        cs = read_attribute(:collaborators).split(", ")
+    end
+    unless cs.include? user_name
+      cs << user_name
+      write_attribute(:collaborators, cs.join(", "))
+    end
+  end
+
   private
 
   def update_progress_from_delivered(next_state)
@@ -92,8 +106,6 @@ ORDER BY date(delivered_at)"
       write_attribute :delivered_at, dt
     end
   end
-
-
 
 end
 

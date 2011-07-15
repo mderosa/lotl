@@ -52,6 +52,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(params[:task])
     @task.project_id = params[:project_id]
+    @task.add_collaborator current_user
 
     respond_to do |format|
       if @task.save
@@ -71,6 +72,7 @@ class TasksController < ApplicationController
   # PUT /tasks/1.xml
   def update
     @task = Task.find(params[:id])
+    @task.add_collaborator current_user
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
