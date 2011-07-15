@@ -14,9 +14,9 @@ module StatisticsHelper
       temp[:labels] << d["delivered_at"]
     end
     if data.length > 0
-      temp[:xbarbar] = (temp[:total] * 1.0)/data.length
-      temp[:xbarucl] = temp[:xbarbar] + 3 * temp[:xbarbar]
-      temp[:xbarlcl] = temp[:xbarbar] - 3 * temp[:xbarbar]
+      temp[:xbarbar] = ((temp[:total] * 1.0)/data.length).round(2)
+      temp[:xbarucl] = (temp[:xbarbar] + 3 * temp[:xbarbar]).round(2)
+      temp[:xbarlcl] = (temp[:xbarbar] - 3 * temp[:xbarbar]).round(2)
       if temp[:xbarlcl] < 0 
         temp[:xbarlcl] = 0
       end
