@@ -29,7 +29,11 @@
 <% if not @task.new_record? %>
 <div class="field span-12 last">
   <%= f.label :progress, :class => "span-3" %>
-  <%= f.select :progress, {t(".proposed") => "proposed", t(".inProgress") => "inProgress", t(".delivered") => "delivered"} %>
+  <% if @task.progress == "proposed" %>
+    <%= f.select :progress, {t(".proposed") => "proposed", t(".inProgress") => "inProgress", t(".delivered") => "delivered"} %>
+  <% else %>
+    <%= f.select :progress, {t(".inProgress") => "inProgress", t(".delivered") => "delivered"} %>
+  <% end %>
 </div>
 <% end %>
 
