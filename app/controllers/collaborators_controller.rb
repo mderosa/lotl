@@ -9,13 +9,13 @@ class CollaboratorsController < ApplicationController
 
     if not @user.nil?
       if @project.users.include? @user
-        flash[:notice] = "#{@user.email} is already a collaborator"
+        flash[:notice] = "#{@user.email} #{t('flash.msg.is-collaborator')}"
       else
         @project.users << @user
         @project.save
       end
     else
-      flash[:notice] = "#{params[:user][:email]} is not a registered user"
+      flash[:notice] = "#{params[:user][:email]} #{t('flash.msg.not-registered')}"
     end
     redirect_to edit_project_path(@project)
   end
@@ -26,7 +26,7 @@ class CollaboratorsController < ApplicationController
     @project = Project.find(params[:project_id])
     user = User.find(params[:id])
     if not @project.users.include?(user)
-      flash[:notice] = "The user has already been removed from the project"
+      flash[:notice] = t("flash.msg.already-removed")
     else 
       @project.users.delete(user)
     end
@@ -43,7 +43,7 @@ class CollaboratorsController < ApplicationController
   def authorize
     p = Project.find(params[:project_id])
     if not p.users.include?(current_user)
-      flash[:notice] = "access to resource denied"
+      flash[:notice] = t("flash.msg.access-denied")
       redirect_to home_path
     end
   end

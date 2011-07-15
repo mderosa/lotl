@@ -102,8 +102,20 @@ zh:
         task:
           attributes:
             title:
-              blank: 标题不能为空
+              blank: 不能为空
+        project:
+          attributes:
+            name:
+              blank: 不能为空
   helpers:
     submit:
       create: 创造%{model}
       update: 更新%{model}
+  flash:
+    msg:
+      please-login: 请先登录
+      is-collaborator: 已经是一个合作者
+      not-registered: 找不到这个用户的帐户
+      already-removed: 已经不在这个项目
+      access-denied: 不能访问这个资源
+      task-created: 成功创造了任务

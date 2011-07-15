@@ -57,7 +57,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.save
         format.html { 
-          flash[:success] = 'Tast was successfully created'
+          flash[:success] = t("flash.msg.task-created")
           redirect_to(project_tasks_path(params[:project_id])) 
         }
         format.xml  { render :xml => @task, :status => :created, :location => @task }
@@ -104,7 +104,7 @@ class TasksController < ApplicationController
   def authorize
     p = Project.find(params[:project_id])
     if not p.users.include?(current_user)
-      flash[:notice] = "access to resource denied"
+      flash[:notice] = t("flash.msg.access-denied")
       redirect_to home_path
     end
   end

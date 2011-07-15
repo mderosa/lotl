@@ -106,7 +106,7 @@ class ProjectsController < ApplicationController
   def authorize
     p = Project.find(params[:id])
     if not p.users.include?(current_user)
-      flash[:notice] = "access to resource denied"
+      flash[:notice] = t("flash.msg.access-denied")
       redirect_to home_path
     end
   end

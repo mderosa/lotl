@@ -101,7 +101,19 @@ en:
         task:
           attributes:
             title:
-              blank: The title can not be blank
+              blank: can not be blank
+        project:
+          attributes:
+            name:
+              blank: can not be blank
     submit:
       create: Create %{model}
       update: Update %{model}
+  flash:
+    msg:
+      please-login: Please login first
+      is-collaborator: is already a collaborator
+      not-registered: is not a registered user
+      already-removed: The user has already been removed from the project
+      access-denied: Access to resource denied
+      task-created: Tast was successfully created

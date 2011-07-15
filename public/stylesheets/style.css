@@ -12,7 +12,6 @@ div.field_with_errors > input {
 }
 
 #error_explanation {
-  width: 450px;
   border: 2px solid #ddd;
   padding: 0.8em;
   margin-bottom: 1em;

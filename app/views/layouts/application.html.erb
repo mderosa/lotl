@@ -33,7 +33,7 @@
       <%= render "layouts/header" %>
 
       <% flash.each do |k, v| %>
-      <div class="ltl-flash push-8 span-8 <%= k.to_s %>" style="padding-left:0; padding-right:0">
+      <div class="ltl-flash span-8 last <%= k.to_s %>" style="margin-left:310px; margin-right:310px">
 	<%= v %>
       </div>
       <% end %>
