@@ -57,7 +57,7 @@ FROM tasks
 WHERE delivered_at is not null
 AND project_id = #{id}
 AND delivered_at >= '#{from}'::date
-AND delivered_at < '#{to}'::date
+AND delivered_at <= '#{to}'::date + 1
 GROUP BY date(delivered_at)
 ORDER BY date(delivered_at)"
     Task.connection.select_all sql
