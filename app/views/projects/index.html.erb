@@ -19,7 +19,10 @@
       <p><%= t ".none" %></p>
       <% else %>
         <% @project_tasks[project].each do |tsk| %>
-        <p>[&nbsp;<%= t(".#{tsk.progress}") %>&nbsp;]&nbsp;<%= tsk.title %></p>
+        <div>
+	  <strong>[</strong>&nbsp;<%= t(".#{tsk.progress}") %>&nbsp;<strong>]</strong>
+	  <%= tsk.title %>
+	</div>
         <% end %>
       <% end %>
     </div>

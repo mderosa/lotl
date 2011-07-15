@@ -5,6 +5,8 @@ module ApplicationHelper
       false
     elsif params[:controller] == "projects" and params[:action] == "index"
       false
+    elsif params[:controller] == "users" and params[:action] == "new"
+      false
     else
       true
     end
