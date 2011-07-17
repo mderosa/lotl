@@ -1,3 +1,24 @@
+.container a {
+    color: #1142AA;
+}
+
+.container h2 {
+    color: #FFA900;
+}
+
+.ltl-application-menu a {
+    text-decoration: underline;
+    color: #FFA900;
+}
+
+.subpoint {
+    color: #4373D5;
+}
+
+div.ltl-tasks a {
+    color: #4373D5;
+    text-decoration: none;
+}
 
 div.field, div.actions {
   margin-bottom: 10px;
@@ -53,6 +74,7 @@ header nav {
 }
 
 header nav > span {
+    color: #FFA900;
     text-align: center;
     padding: 0 15px 0 15px;
 }
@@ -86,6 +108,7 @@ header nav > a {
 .ltl-bucket-title {
     font-weight: bold;
     font-size: 120%;
+    color: #FFA900;
 }
 
 .ltl-projects-list > h5 {
@@ -116,7 +139,12 @@ div.ltl-task-info {
 
 .ltl-home-point {
     padding-left: 30px;
-    border-left: 10px solid #DDD;
+    border-left: 10px solid #FFA900;
+}
+
+.ltl-stats > h5, .ltl-stats-explanation > h5 {
+    margin-bottom: 0;
+    color: #4373D5;
 }
 
 /*
@@ -145,4 +173,18 @@ error: added commas to three part declaration for border-left
     padding: 1px;
     font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
     font-size: 125%;
+}
+
+footer > hr {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+footer div.ltl-footer-bin {
+    text-align: center;
+    border-left: 1px solid #CCC;
+}
+
+footer div.ltl-footer-bin-last {
+    border-right: 1px solid #CCC;
 }

@@ -7,16 +7,23 @@
   <%= javascript_include_tag "controlchart" %>
 
   <div class="ltl-stats span-12 prepend-1 loud">
-    <%= t ".upper-control-limit" %> (ucl): <%= @chart_data[:xbarucl] %><br/>
-    <%= t ".process-average" %> (avg): <%= @chart_data[:xbarbar] %><br/>
-    <%= t ".lower-control-limit" %> (lcl): <%= @chart_data[:xbarlcl] %>
+    <h5>Data</h5>
+    <ul>
+      <li><%= t ".upper-control-limit" %> (ucl): <%= @chart_data[:xbarucl] %></li>
+      <li><%= t ".process-average" %> (avg): <%= @chart_data[:xbarbar] %></li>
+      <li><%= t ".lower-control-limit" %> (lcl): <%= @chart_data[:xbarlcl] %></li>
+    </ul>
   </div>
-  <div class="ltl-stats-explanation span-10 last quiet small append-1">
+  <div class="ltl-stats-explanation span-10 last append-1">
+    <h5>Comments</h5>
+    <span class="quiet small">
     Attempt to raise the average number of deliveries per day. If data exceeds the ucl then the group may be
     improving their delivery rate (good) or 
     grouping all their deliveries together in one 'big bang' (bad). If the data falls below the lcl then the group is
-    losing velocity. 
+    losing velocity.
+    </span>
   </div>
+  <hr/>
 
 </div>
 

@@ -1,5 +1,8 @@
 Lotl::Application.routes.draw do
 
+  get "contactus" => 'info#contactus', :as => 'contact_us'
+  get "whatsandwhys" => 'info#whatsandwhys', :as => 'whats_and_whys'
+
   match "/home" => 'entrance#home', :via => 'get', :as => 'home'
   match "/login" => 'entrance#login', :via => 'post', :as => 'login'
   match "/activation_instructions" => "entrance#activation_instructions", :via => 'get', :as => 'activation_instructions'

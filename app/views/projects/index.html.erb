@@ -1,6 +1,6 @@
 
 <div class="ltl-projects-list span-15">
-  <h2><%= t ".your-projects" %></h2>
+  <h2 class="heading"><%= t ".your-projects" %></h2>
   <h5 class="span-4"><%= t ".name" %></h5>
   <h5 class="span-9"><%= t ".recent-activity" %></h5>
   <h5 class="span-2 last"><%= t ".actions" %></h5>
@@ -39,7 +39,7 @@
 <div class="span-8 prepend-1 last">
   
   <div class="ltl-project-action span-8 last">
-    <h2><%= t ".create-a-project" %> </h2>
+    <h2 class="heading"><%= t ".create-a-project" %> </h2>
 
     <%= form_for(Project.new) do |f| %>
     <%= f.label :name %><br />

@@ -19,7 +19,8 @@ var pnl = new pv.Panel()
 pnl.add(pv.Dot)
     .data(xbardata.subgroupavgs)
     .left(function() {return fnXScale(this.index)})
-    .bottom(fnYScale);
+    .bottom(fnYScale)
+    .strokeStyle("#1142AA");
 
 // add vertical rules / x axis labels
 pnl.add(pv.Rule)
@@ -64,7 +65,7 @@ var hrule = pnl.add(pv.Rule)
 	    }
 	}())
     .bottom(function(d) {return fnYScale(d[0])})
-    .strokeStyle("#aaa")
+    .strokeStyle("#FFA900")
     .anchor("right").add(pv.Label)
         .text(function(d) {return d[1]})
         .textAlign("left")
