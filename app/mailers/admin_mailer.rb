@@ -22,4 +22,10 @@ class AdminMailer < ActionMailer::Base
 
     mail :to => "to@example.org"
   end
+
+  def feedback_note(params)
+    @params = params
+    mail :to => "lawoftheloop@gmail.com", :subject => "Feedback: #{params[:subject]}"
+  end
+
 end

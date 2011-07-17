@@ -1,6 +1,5 @@
 Lotl::Application.routes.draw do
 
-  get "contactus" => 'info#contactus', :as => 'contact_us'
   get "whatsandwhys" => 'info#whatsandwhys', :as => 'whats_and_whys'
 
   match "/home" => 'entrance#home', :via => 'get', :as => 'home'
@@ -9,6 +8,7 @@ Lotl::Application.routes.draw do
   match "/activate" => "entrance#activate", :via => 'get', :as => 'activate'
 
   resources :users
+  resources :feedback, :only => [:new, :create]
 
   resources :projects do
     resources :tasks

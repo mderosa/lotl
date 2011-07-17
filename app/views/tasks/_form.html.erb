@@ -42,10 +42,12 @@
   <%= f.select :priority, {"" => "", t(".low") => "1", t(".medium") => "2", t(".high") => "3"} %>
 </div>
 
+<!--
 <div class="field span-12 last">
   <%= f.label :namespace, :class => "span-3" %>
   <%= f.text_field :namespace, :class => "span-9 last" %>
 </div>
+-->
 <div class="actions span-12 last">
   <%= f.submit %>&nbsp;&nbsp;&nbsp;&nbsp;
   <%= link_to t(".back"), project_tasks_path(params[:project_id]) %>
