@@ -7,6 +7,8 @@ module ApplicationHelper
       false
     elsif params[:controller] == "users" and params[:action] == "new"
       false
+    elsif params[:controller] == "info"
+      false
     else
       true
     end
