@@ -11,17 +11,35 @@ zh:
       email: 电子邮件地址
       password: 密码
       create-an-account: 创造一个帐户
+  info:
+    whatsandwhys:
+      what-is-the-law-of-the-loop: Law of the Loop是什么?
+      what-is-the-motivation-for-lotl: LOTL会帮一个组得到什么目的?
+      why-should-i-use-lotl: 用LOTL对我有什么好处?
+      how-do-i-use-lotl: 我怎么用LOTL?
   statistics:
     index:
       deliveries-per-day: 每天的发布次数
       upper-control-limit: 控制上线
       process-average: 过程平均
       lower-control-limit: 控制下线
+      data: 数据
+      comments: 评论
   layouts:
     header:
       tasks: 任务
       statistics: 统计
       home: 首页
+    footer:
+      whats-and-whys: 这个应用是做什么的？
+      contact-us: 联系我们
+  feedback:
+    new:
+      name: 名字
+      email: 电子邮件地址
+      subject: 题目
+      questions-comments: 问题/评论
+      send: 发出
   tasks:
     edit:
       edit-task: 编辑任务

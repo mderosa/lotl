@@ -8,23 +8,23 @@
 <div class="prepend-6 span-12 append-6">
   <form action="<%= feedback_index_path %>" method="post">
     <div class="field span-12 last">
-      <label for="name" class="span-3">Name</label>
+      <label for="name" class="span-3"><%= t ".name" %></label>
       <input id="name" name="name" type="text" value="" class="span-9 last"></input>
     </div>
     <div class="field span-12 last">
-      <label for="email" class="span-3">Email</label>
+      <label for="email" class="span-3"><%= t ".email" %></label>
       <input id="email" name="email" type="text" value="" class="span-9 last"></input>
     </div>
     <div class="field span-12 last">
-      <label for="subject" class="span-3">Subject</label>
+      <label for="subject" class="span-3"><%= t ".subject" %></label>
       <input id="subject" name="subject" type="text" value="" class="span-9 last"></input>
     </div>
     <div class="field span-12 last">
-      <label for="comments" class="span-3">Questions / Comments</label>
+      <label for="comments" class="span-3"><%= t ".questions-comments" %></label>
       <textarea id="comments" name="comments"  class="span-9 last"></textarea>
     </div>
     <div class="actions span-12 last">
-      <input type="submit" value="Send" />
+      <input type="submit" value="<%= t('.send') %>" />
     </div>
   </form>
 </div>

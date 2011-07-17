@@ -11,17 +11,35 @@ en:
       email: Email
       password: Password
       create-an-account: create an account
+  info:
+    whatsandwhys:
+      what-is-the-law-of-the-loop: What is the Law of the Loop?
+      what-is-the-motivation-for-lotl: What is the motivation for LOTL?
+      why-should-i-use-lotl: Why should I use LOTL?
+      how-do-i-use-lotl: How do I use LOTL?
   statistics:
     index:
       deliveries-per-day: Deliveries per Day
       upper-control-limit: Upper control limit
       process-average: Process average
       lower-control-limit: Lower control limit
+      data: Data
+      comments: Comments
   layouts:
     header:
       tasks: Tasks
       statistics: Statistics
       home: Home
+    footer:
+      whats-and-whys: Whats and whys
+      contact-us: Contact us
+  feedback:
+    new:
+      name: Name
+      email: Email
+      subject: Subject
+      questions-comments: Questions / Comments
+      send: Send
   tasks:
     edit:
       edit-task: Edit task

@@ -7,7 +7,7 @@
   <%= javascript_include_tag "controlchart" %>
 
   <div class="ltl-stats span-12 prepend-1 loud">
-    <h5>Data</h5>
+    <h5><%= t ".data" %></h5>
     <ul>
       <li><%= t ".upper-control-limit" %> (ucl): <%= @chart_data[:xbarucl] %></li>
       <li><%= t ".process-average" %> (avg): <%= @chart_data[:xbarbar] %></li>
@@ -15,7 +15,7 @@
     </ul>
   </div>
   <div class="ltl-stats-explanation span-10 last append-1">
-    <h5>Comments</h5>
+    <h5><%= t ".comments" %></h5>
     <span class="quiet small">
     Attempt to raise the average number of deliveries per day. If data exceeds the ucl then the group may be
     improving their delivery rate (good) or 
