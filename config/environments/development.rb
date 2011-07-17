@@ -22,11 +22,9 @@ Lotl::Application.configure do
     :domain => "lawoftheloop.net",
     :authentication => "plain",
     :user_name => "lawoftheloop",
-    :password => "makesomethingpeoplewant",
+    :password => ENV["LOTL_MAIL_PWD"],
     :enable_starttls_auto => true
   }
-
-
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
