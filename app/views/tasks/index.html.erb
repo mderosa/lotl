@@ -43,7 +43,7 @@
 	<div class="ltl-task-info span-3 last quiet">
 	  <%= t ".cost" %>: <%= calc_cost task %>
 	  <br/>
-	  <%= t ".done-on" %>: <%= task.work_finished_at.strftime("%y-%m-%d") if not task.work_finished_at.nil? %>
+	  <%= t ".started-on" %>: <%= task.work_started_at.strftime("%y-%m-%d") %>
 	</div>
       </div>
       <% end %>

@@ -68,6 +68,7 @@ en:
       work-in-progress: Work in Progress
       cost: Cost
       done-on: Done on
+      started-on: Started on
       delivered-to-user: Delivered to User
       deployed-on: Deployed on
   projects:

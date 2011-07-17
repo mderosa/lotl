@@ -1,4 +1,3 @@
-
 zh:
   entrance:
     home:
@@ -68,6 +67,7 @@ zh:
       work-in-progress: 在进行的工作
       cost: 代价
       done-on: 完成日期
+      started-on: 开始日期
       delivered-to-user: 发布给用户
       deployed-on: 发布日期
   projects:
