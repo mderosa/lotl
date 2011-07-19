@@ -29,7 +29,6 @@ GEM
       activemodel (= 3.0.7)
       activesupport (= 3.0.7)
     activesupport (3.0.7)
-    annotate-models (1.0.4)
     arel (2.0.10)
     autotest (4.4.6)
       ZenTest (>= 4.4.1)
@@ -118,7 +117,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  annotate-models (= 1.0.4)
   autotest (= 4.4.6)
   autotest-rails-pure (= 4.1.2)
   capistrano
