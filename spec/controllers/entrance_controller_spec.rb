@@ -21,6 +21,14 @@ describe EntranceController do
       get :activate, :email => "notindb@notindb.com", :token => "bogus token"
       response.body.should match("LOTL")
     end
+
+    it "an actual user in the system should be activated, placed in session, and redirected" do 
+      user = User.first
+      get :activate, :email => user.email, :token => user.salt
+      assigns(:current_user).should_not be_nil
+      assigns(:current_user).active.should be_true
+      response.should redirect_to(projects_path)
+    end
   end
 
   describe "GET 'home'" do

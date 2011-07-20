@@ -50,8 +50,8 @@ class EntranceController < ApplicationController
       if @user.errors.empty?
         true_user.active = true
         true_user.save
-        self.current_user = @user
-        format.html { redirect_to(projects_path, :notice => "Welcome! your account has been activated to begin try creating a new project in the form at the top right") }
+        self.current_user = true_user
+        format.html { redirect_to(projects_path, :success => "Your account has been activated! To begin, create a new project using the 'Create a Project'form below.") }
       else
         format.html { render :action => "activation_instructions" }
       end
