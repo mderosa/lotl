@@ -27,6 +27,7 @@ describe EntranceController do
       get :activate, :email => user.email, :token => user.salt
       assigns(:current_user).should_not be_nil
       assigns(:current_user).active.should be_true
+      flash[:success].should_not be_nil
       response.should redirect_to(projects_path)
     end
   end
