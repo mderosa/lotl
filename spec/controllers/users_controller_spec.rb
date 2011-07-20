@@ -60,14 +60,13 @@ describe UsersController do
   end
 
   describe "GET new" do
-    before(:each) do
-      login_as user
-    end
+    #note we are not authenticating here
 
     it "assigns a new user as @user" do
       get :new
       assigns(:user).should be_a_new(User)
     end
+
   end
 
   describe "GET edit" do
@@ -83,9 +82,7 @@ describe UsersController do
   end
 
   describe "POST create" do
-    before(:each) do
-      login_as user
-    end
+    # not that we are not authenticating here as new users have to be able to register themselves
 
     describe "with valid params" do
       it "creates a new User" do
