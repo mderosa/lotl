@@ -51,7 +51,7 @@ class EntranceController < ApplicationController
         true_user.active = true
         true_user.save
         self.current_user = true_user
-        flash[:success] = "Your account has been activated! To begin, create a new project using the 'Create a Project'form below."
+        flash[:success] = "Your account has been activated! To begin, create a new project using the 'Create a Project' form below."
         format.html { redirect_to(projects_path) }
       else
         format.html { render :action => "activation_instructions" }
