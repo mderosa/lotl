@@ -1,6 +1,6 @@
 # deployment script for lotl
-# For production run 'cap env:pro deploy:migrations'
-# For test run 'cap env:test deploy:migrations
+# For production run 'cap env:pro_env deploy:migrations'
+# For test run 'cap env:test_env deploy:migrations
 
 set :application, "lotl"
 
