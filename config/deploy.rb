@@ -2,7 +2,7 @@ set :application, "lotl"
 
 $:.unshift(File.expand_path('./lib', ENV['rvm_path'])) # Add RVM's lib directory to the load path.
 require "rvm/capistrano"                               # Load RVM's capistrano plugin.
-set :rvm_ruby_string, 'ruby-1.9.2-p180@rails3'         # Or whatever env you want it to run in.
+set :rvm_ruby_string, 'ruby-1.9.2-p290@rails3'         # Or whatever env you want it to run in.
 set :rvm_type, :user 
 
 
@@ -28,8 +28,15 @@ role :db,  "192.168.2.9", :primary => true # This is where Rails migrations will
 
 # If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
+
+  desc "cause Passenger to initiate a restart"
+  task :restart do
+    run "touch #{current_path}/tmp/restart.txt"
+  end
+
   task :start do ; end
   task :stop do ; end
+
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
