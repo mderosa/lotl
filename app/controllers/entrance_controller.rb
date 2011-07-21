@@ -1,6 +1,7 @@
 
 class EntranceController < ApplicationController
   skip_before_filter :authenticate
+  ssl_required :home
 
   def home
     @submitted_credentials = User.new
