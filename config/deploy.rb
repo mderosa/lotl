@@ -1,3 +1,7 @@
+# deployment script for lotl
+# For production run 'cap env:pro deploy:migrations'
+# For test run 'cap env:test deploy:migrations
+
 set :application, "lotl"
 
 $:.unshift(File.expand_path('./lib', ENV['rvm_path'])) # Add RVM's lib directory to the load path.
@@ -12,19 +16,29 @@ set :scm_username, "git"
 set :branch, "master"
 set :deploy_via, :remote_cache
 
-set :user, "parsival"
-set :deploy_to, "/home/#{user}/apps/#{application}"
+set :deploy_to,  do
+  "/home/#{user}/apps/#{application}"
+end
 set :use_sudo, false
 
 ssh_options[:forward_agent] = true
 
-role :web, "192.168.2.9"                          # Your HTTP server, Apache/etc
-role :app, "192.168.2.9"                          # This may be the same as your `Web` server
-role :db,  "192.168.2.9", :primary => true # This is where Rails migrations will run
+role :web, do ltl_web_server end                          # Your HTTP server, Apache/etc
+role :app, do ltl_web_server end                          # This may be the same as your `Web` server
+role :db, :primary => true, do ltl_web_server end         # This is where Rails migrations will run
 #role :db,  "your slave db-server here"
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+namespace :env do
+  task :test_env do
+    set :user, "parsival"
+    set :ltl_web_server, "192.168.2.9"
+  end
+
+  task :pro_env do
+    set :user, "ubuntu"
+    set :ltl_web_server, "122.248.220.253"
+  end
+end
 
 # If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
@@ -47,3 +61,6 @@ desc "install the necessary prerequisites"
 task :bundle_install, :roles => :app do
   run "cd #{release_path} && bundle install"
 end
+
+
+# error: several times i forgot the comma in set :something 'xxx'
