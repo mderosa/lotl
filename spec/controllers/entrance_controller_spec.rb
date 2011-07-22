@@ -33,6 +33,10 @@ describe EntranceController do
   end
 
   describe "GET 'home'" do
+    before(:each) do
+      request.env["HTTPS"] = "on"
+    end
+
     it "should be successful" do
       get 'home'
       response.should be_success
@@ -52,6 +56,10 @@ describe EntranceController do
     end
 
     describe "with invalid parameters" do
+      before(:each) do
+        request.env["HTTPS"] = "on"
+      end
+
       it "creates a new :user with a nil value and a :submitted_credentials that has one error message" do
         post :login, :email => "notindb@nowhere.com", :password => "yobabyyobaby"
         assigns(:user).should be_nil
@@ -70,6 +78,7 @@ describe EntranceController do
 
     describe "with valid user credentials" do
       before(:each) do
+        request.env["HTTPS"] = "on"
         @params = {:email => "marc@email.com", :password => "password"}
       end
 

@@ -7,7 +7,7 @@ Lotl::Application.routes.draw do
   match "/activation_instructions" => "entrance#activation_instructions", :via => 'get', :as => 'activation_instructions'
   match "/activate" => "entrance#activate", :via => 'get', :as => 'activate'
 
-  resources :users
+  resources :users, :only => [:new, :create]
   resources :feedback, :only => [:new, :create]
 
   resources :projects do
