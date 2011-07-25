@@ -25,12 +25,15 @@ module StatisticsHelper
   end
 
   # fill_date_gaps :: [{"delivered_at" => String, "count" => Int}] -> Date -> Date -> [{"delivered_at" => String, "count" => Int}]
+  # fills in any date gaps in data over the range from - to inclusive
   def fill_date_gaps(data, from, to)
     filled = []
     (from..to).each do |rng_date|
       db_date = data.first['delivered_at'] unless data.first.nil?
-      if db_date.nil? or rng_date < Date.parse(db_date)
-        filled << {"delivered_at" => rng_date.to_s, "count" => 0}
+      if gap_in_db_dates? db_date, rng_date
+        if is_weekday? rng_date
+          filled << {"delivered_at" => rng_date.to_s, "count" => 0}
+        end
       elsif rng_date == Date.parse(db_date)
         filled << data.shift
       else
@@ -38,6 +41,14 @@ module StatisticsHelper
       end
     end
     return filled
+  end
+
+  def gap_in_db_dates?(db_date, rng_date)
+    (db_date.nil? or rng_date < Date.parse(db_date))
+  end
+
+  def is_weekday?(rng_date)
+    rng_date.cwday <= 5
   end
 
 end
