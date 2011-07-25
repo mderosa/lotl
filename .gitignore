@@ -7,4 +7,6 @@ test/lotl-intg/.gradle/
 test/lotl-intg/.settings/
 test/lotl-intg/.classpath
 test/lotl-intg/.project
+test/Servers
+test/.metadata
 *~
