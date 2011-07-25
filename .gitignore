@@ -2,4 +2,9 @@
 db/*.sqlite3
 log/*.log
 tmp/
+test/lotl-intg/target/
+test/lotl-intg/.gradle/
+test/lotl-intg/.settings/
+test/lotl-intg/.classpath
+test/lotl-intg/.project
 *~
