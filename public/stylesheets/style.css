@@ -87,12 +87,10 @@ header nav > a {
 }
 
 input[type="submit"] {
-    -moz-border-radius: 2px 2px 2px 2px;
-    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-    background: -moz-linear-gradient(-90deg, #EEE, #E1E1E1) repeat scroll 0 0 transparent;
-    border-color: -moz-use-text-color -moz-use-text-color #E1E1E1;
-    border-style: none none solid;
-    border-width: medium medium 1px;
+    -moz-border-radius: 4px 4px 4px 4px;
+//    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    background: -moz-linear-gradient(center top, #F1F1F1, #E1E1E1);
+    border: 1px solid #BBB;
     color: #666;
     cursor: pointer;
     display: inline-block;
@@ -102,6 +100,7 @@ input[type="submit"] {
     overflow: visible;
     text-shadow: 1px 1px 0 #FFFFFF;
     white-space: nowrap;
+    padding: 3px;
 }
 
 .ltl-flash {
