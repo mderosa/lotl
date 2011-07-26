@@ -86,6 +86,24 @@ header nav > a {
     text-decoration: none;
 }
 
+input[type="submit"] {
+    -moz-border-radius: 2px 2px 2px 2px;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    background: -moz-linear-gradient(-90deg, #EEE, #E1E1E1) repeat scroll 0 0 transparent;
+    border-color: -moz-use-text-color -moz-use-text-color #E1E1E1;
+    border-style: none none solid;
+    border-width: medium medium 1px;
+    color: #666;
+    cursor: pointer;
+    display: inline-block;
+    font-family: helvetica,arial,freesans,clean,sans-serif;
+    font-weight: bold;
+    font-size: 1em;
+    overflow: visible;
+    text-shadow: 1px 1px 0 #FFFFFF;
+    white-space: nowrap;
+}
+
 .ltl-flash {
     text-align: center;
 }
