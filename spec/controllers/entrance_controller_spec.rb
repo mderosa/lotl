@@ -19,7 +19,7 @@ describe EntranceController do
   describe "get activation" do
     it "should send us back to the activation instruction page when bad info is submitted" do
       get :activate, :email => "notindb@notindb.com", :token => "bogus token"
-      response.body.should match("LOTL")
+      response.body.should match("LOOP")
     end
 
     it "an actual user in the system should be activated, placed in session, and redirected" do 

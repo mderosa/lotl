@@ -14,7 +14,7 @@ describe AdminMailer do
     end
 
     it "renders the body" do
-      mail.body.encoded.should match("Thanks for trying out LOTL")
+      mail.body.encoded.should match("Thanks for trying out LOOP")
     end
   end
 
