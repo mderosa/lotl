@@ -1,6 +1,7 @@
 
 <header class="span-24 last">
-  <h1><%= link_to 'Law of the Loop', home_path %></h1>
+     <% logo = image_tag 'lotl-logo.png' %>
+     <%= link_to logo, home_path, :alt => "Law of the Loop" %>
 
   <% if show_menu?(params) %>
   <div class="span-24 ltl-menu last">
