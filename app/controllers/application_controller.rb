@@ -6,6 +6,19 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
   before_filter :authenticate
 
+  @default_cache = ActiveSupport::Cache::MemoryStore.new
+  @cache
+  attr_accessor :cache
+
+  class << self
+    attr_accessor :default_cache
+  end
+
+  def initialize
+    super
+    @cache = ApplicationController.default_cache
+  end
+
   def set_locale
     if params[:locale]
       I18n.locale = params[:locale]
