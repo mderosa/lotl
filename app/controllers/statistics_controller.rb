@@ -35,6 +35,10 @@ class StatisticsController < ApplicationController
     end
   end
 
+  def cost_data
+    Task.where("delivered_at is not null").order("delivered_at desc").limit(120)
+  end
+
 end
 
 # error: forgot to add a where clause restricting min(delivered_at) to just project of interest

@@ -51,4 +51,72 @@ module StatisticsHelper
     rng_date.cwday <= 5
   end
 
+  def c4_factor(sample_size)
+    raise ArgumentError, "the c4 factor only accepts numeric arguments greater than zero" unless sample_size.is_a? Numeric and sample_size > 1
+    a = Math.sqrt(2.0/(sample_size - 1))
+    b = (1.0 * sample_size / 2) - 1
+    c = (1.0 * (sample_size - 1) / 2) - 1
+    return a * fractional_factorial(b) / fractional_factorial(c)
+  end
+
+  def fractional_factorial(x)
+    raise ArgumentError, "fractional factorial only accepts numeric arguments" if not x.is_a? Numeric
+    raise ArgumentError, "fractional factorial only accepts half integer arguments, greater than 0" if x < 0.5 or (x % 0.5 != 0)
+    Math.gamma (x + 1)
+  end
+
+  # xbar_average [(n1, n2, ...nN)] -> Double
+  def xbar_average(gs, subgroup_size)
+    raise ArgumentError, "the subgroups must be an array" unless gs.is_a? Array
+    raise ArgumentError, "the subgroup size must be an integer greater than 0" unless subgroup_size.is_a? Integer and subgroup_size > 0
+    return nil if gs.empty? or (gs.size == 1 and gs.first.size < subgroup_size)
+
+    item_total = 0
+    item_count = 0
+    gs.each do |g|
+      if g.size == subgroup_size
+        item_total += g.sum
+        item_count += subgroup_size
+      elsif g.size != subgroup_size and not (g.equal? gs.last)
+        raise ArgumentError, "incorrect group size discovered out size of sequence tail"
+      end
+    end
+    item_total/item_count
+  end
+
+  def std_deviation(ds)
+    avg = ds.sum / ds.size
+    ss = ds.map do |x| (x - avg) ** 2 end
+    return Math.sqrt( ss.sum / (ss.size - 1))
+  end
+
+  def xbar_average_std_deviation(gs, subgroup_size)
+    return nil if gs.empty? or gs.first.size < subgroup_size
+
+    ds = []
+    gs.each do |g|
+      if g.size == subgroup_size
+        ds << std_deviation(g)
+      end
+    end
+    ds.sum / ds.size
+  end
+
+  def control_limit(x_barbar, s_bar, sample_size)
+    temp = (3 * s_bar) / (c4_factor(sample_size) * Math.sqrt(sample_size))
+    yield x_barbar, temp
+  end
+
+  def xbar_ucl(x_barbar, s_bar, sample_size)
+    control_limit x_barbar, s_bar, sample_size do |x, y|
+      x + y
+    end
+  end
+
+  def xbar_lcl(x_barbar, s_bar, sample_size)
+    control_limit x_barbar, s_bar, sample_size do |x, y|
+      x - y
+    end
+  end
+
 end
