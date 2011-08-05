@@ -61,7 +61,7 @@ module StatisticsHelper
 
   def fractional_factorial(x)
     raise ArgumentError, "fractional factorial only accepts numeric arguments" if not x.is_a? Numeric
-    raise ArgumentError, "fractional factorial only accepts half integer arguments, greater than 0" if x < 0.5 or (x % 0.5 != 0)
+    raise ArgumentError, "fractional factorial only accepts half integer arguments" if x % 0.5 != 0
     Math.gamma (x + 1)
   end
 
@@ -103,6 +103,9 @@ module StatisticsHelper
   end
 
   def control_limit(x_barbar, s_bar, subgroup_size)
+    raise ArgumentError, "both xbar and sbar should be nil if one is nil" if (x_barbar.nil? and (not s_bar.nil?)) or (s_bar.nil? and (not x_barbar.nil?))
+
+    return nil if x_barbar.nil? and s_bar.nil?
     temp = (3 * s_bar) / (c4_factor(subgroup_size) * Math.sqrt(subgroup_size))
     yield x_barbar, temp
   end
@@ -136,10 +139,11 @@ module StatisticsHelper
     ds = subgroup data, subgroup_size
     temp = {}
     temp[:xbarbar] = xbar_average ds, subgroup_size
-    sbar = xbar_average_std_deviation ds, subgroup_size
+    s_bar = xbar_average_std_deviation ds, subgroup_size
     temp[:xbarucl] = xbar_ucl temp[:xbarbar], s_bar, subgroup_size
     temp[:xbarlcl] = xbar_lcl temp[:xbarbar], s_bar, subgroup_size
     temp[:subgroupavgs] = subgroup_averages ds, subgroup_size
+    temp
   end
 
   def subgroup(ls, subgroup_size)
@@ -157,3 +161,5 @@ module StatisticsHelper
   end
 
 end
+
+# error: forgot to return data from a function

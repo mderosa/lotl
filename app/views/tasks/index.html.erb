@@ -41,7 +41,7 @@
 	  <%= task.collaborators %>&nbsp;
 	</div>
 	<div class="ltl-task-info span-3 last quiet">
-	  <%= t ".cost" %>: <%= calc_cost task %>
+	  <%= t ".cost" %>: <%= (calc_cost task).trucate %>
 	  <br/>
 	  <%= t ".started-on" %>: <%= task.work_started_at.strftime("%y-%m-%d") %>
 	</div>
@@ -63,7 +63,7 @@
 	  <%= task.collaborators %>&nbsp;
 	</div>
 	<div class="ltl-task-info span-3 last quiet">
-	  <%= t ".cost" %>: <%= calc_cost task %>
+	  <%= t ".cost" %>: <%= (calc_cost task).truncate %>
 	  <br/>
 	  <%= t ".deployed-on" %>: <%= task.delivered_at.strftime("%y-%m-%d") if not task.delivered_at.nil? %>
 	</div>

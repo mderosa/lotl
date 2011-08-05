@@ -25,5 +25,9 @@
   </div>
   <hr/>
 
+  <h2>Cost Chart</h2>
+  <%= javascript_tag "var cost_chart_data = #{JSON.dump(@cost_chart_data)}" %>
+  <div id="cost_chart"></div>
+
 </div>
 

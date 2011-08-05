@@ -71,6 +71,10 @@ describe StatisticsHelper do
         actual.should > 0.972
         actual.should < 0.973
       end
+      
+      it "should be able to handle a subgroup size of 3" do
+        c4_factor(3).should_not be_nil
+      end
     end
 
     describe "calculations of fractional factorial" do
@@ -83,12 +87,6 @@ describe StatisticsHelper do
       it "should only accept half fractions, n/2" do
         expect {
           fractional_factorial(4.2)
-        }.to raise_exception(ArgumentError)
-      end
-
-      it "should only accept numbers > 0.5" do
-        expect {
-          fractional_factorial(0)
         }.to raise_exception(ArgumentError)
       end
     end
@@ -150,6 +148,9 @@ describe StatisticsHelper do
         actual = xbar_ucl 5, 1, 100
         actual.should > 5.3
         actual.should < 5.4
+      end
+      it "should be able to handle null xbarbar and sbar values" do
+        xbar_ucl(nil, nil, 3).should be_nil
       end
     end
 

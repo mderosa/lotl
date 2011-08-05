@@ -6,6 +6,7 @@ class StatisticsController < ApplicationController
   def index
     project_id = params[:project_id]
     @chart_data = fetch_delivery_count_per_day(project_id, delivery_count_time_range(project_id))
+    @cost_chart_data = cost_chart
   end
 
   # delivery_count_time_range :: {:from => Date, :to => Date}
@@ -40,10 +41,13 @@ class StatisticsController < ApplicationController
   #                :xbarlcl: Maybe Double, :subgroupavgs: [Double]}
   def cost_chart
     ts = Task.where("project_id = ? AND delivered_at is not null", params[:project_id]).order("delivered_at desc").limit(120)
+    ts.delete_if do |t| t.work_started_at == t.delivered_at end
     ln_cost = ts.reverse.map do |t|
       Math.log(calc_cost t)
     end
+    logger.debug ln_cost
     log_data = to_xbar_control_chart ln_cost, 3
+    logger.debug log_data
     convert_back_to_days log_data
   end
 
