@@ -2,10 +2,10 @@ require 'date'
 
 module StatisticsHelper
 
-  # to_control_chart :: [{"delivered_at" => String, "count" => Int}] -> {:xbarbar: Maybe Int, :xbarucl: Maybe Int,
+  # to_counts_control_chart :: [{"delivered_at" => String, "count" => Int}] -> {:xbarbar: Maybe Int, :xbarucl: Maybe Int,
   #                                                                      :xbarlcl: Maybe Int, :subgroupavgs: [Int]
   #                                                                      :labels: [String]}
-  def to_control_chart(data)
+  def to_counts_control_chart(data)
     temp = {:total => 0, :xbarbar => nil, :xbarucl => nil, :xbarlcl => nil, :subgroupavgs => [], :labels => []}
     
     data.each do |d|
@@ -51,11 +51,11 @@ module StatisticsHelper
     rng_date.cwday <= 5
   end
 
-  def c4_factor(sample_size)
-    raise ArgumentError, "the c4 factor only accepts numeric arguments greater than zero" unless sample_size.is_a? Numeric and sample_size > 1
-    a = Math.sqrt(2.0/(sample_size - 1))
-    b = (1.0 * sample_size / 2) - 1
-    c = (1.0 * (sample_size - 1) / 2) - 1
+  def c4_factor(subgroup_size)
+    raise ArgumentError, "the c4 factor only accepts numeric arguments greater than zero" unless subgroup_size.is_a? Numeric and subgroup_size > 1
+    a = Math.sqrt(2.0/(subgroup_size - 1))
+    b = (1.0 * subgroup_size / 2) - 1
+    c = (1.0 * (subgroup_size - 1) / 2) - 1
     return a * fractional_factorial(b) / fractional_factorial(c)
   end
 
@@ -102,21 +102,58 @@ module StatisticsHelper
     ds.sum / ds.size
   end
 
-  def control_limit(x_barbar, s_bar, sample_size)
-    temp = (3 * s_bar) / (c4_factor(sample_size) * Math.sqrt(sample_size))
+  def control_limit(x_barbar, s_bar, subgroup_size)
+    temp = (3 * s_bar) / (c4_factor(subgroup_size) * Math.sqrt(subgroup_size))
     yield x_barbar, temp
   end
 
-  def xbar_ucl(x_barbar, s_bar, sample_size)
-    control_limit x_barbar, s_bar, sample_size do |x, y|
+  def xbar_ucl(x_barbar, s_bar, subgroup_size)
+    control_limit x_barbar, s_bar, subgroup_size do |x, y|
       x + y
     end
   end
 
-  def xbar_lcl(x_barbar, s_bar, sample_size)
-    control_limit x_barbar, s_bar, sample_size do |x, y|
+  def xbar_lcl(x_barbar, s_bar, subgroup_size)
+    control_limit x_barbar, s_bar, subgroup_size do |x, y|
       x - y
     end
+  end
+
+  # subgroup_averages :: [(n1,n2...nN)] -> [Double]
+  def subgroup_averages ds, subgroup_size
+    temp = []
+    ds.each do |d|
+      if d.size == subgroup_size
+        temp << d.sum/d.size
+      end
+    end
+    temp
+  end
+
+  # to_xbar_control_chart :: [Double] -> Integer  -> {:xbarbar: Maybe Double, :xbarucl: Maybe Double,
+  #                                                    :xbarlcl: Maybe Double, :subgroupavgs: [Double]}
+  def to_xbar_control_chart data, subgroup_size
+    ds = subgroup data, subgroup_size
+    temp = {}
+    temp[:xbarbar] = xbar_average ds, subgroup_size
+    sbar = xbar_average_std_deviation ds, subgroup_size
+    temp[:xbarucl] = xbar_ucl temp[:xbarbar], s_bar, subgroup_size
+    temp[:xbarlcl] = xbar_lcl temp[:xbarbar], s_bar, subgroup_size
+    temp[:subgroupavgs] = subgroup_averages ds, subgroup_size
+  end
+
+  def subgroup(ls, subgroup_size)
+    return [] if ls.empty? 
+    temp = [[]]
+    ls.each do |l|
+      last = temp.last
+      if last.size == subgroup_size
+        last = []
+        temp << last
+      end
+      last << l
+    end
+    temp
   end
 
 end

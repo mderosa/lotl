@@ -35,7 +35,23 @@ describe StatisticsController do
       sleep 5
       controller.cache.read("#{project.id}.delivery_count_per_day").should be_nil
     end
+  end
 
+  describe "convert back to days" do
+    let(:controller) do
+      StatisticsController.new
+    end
+
+    it "should handle nil values as nil" do
+      empty_data = {:xbarbar => nil, :xbarucl => nil, :xbarlcl => nil, :subgroupavgs => []}
+      controller.convert_back_to_days(empty_data).should eq(empty_data)
+    end
+
+    it "should convert log(cost) numbers back to cost data" do
+      data = {:xbarbar => 0, :xbarucl => 0, :xbarlcl => 0, :subgroupavgs => [0,0]}
+      expected = {:xbarbar => 1, :xbarucl => 1, :xbarlcl => 1, :subgroupavgs => [1,1]}
+      controller.convert_back_to_days(data).should eq(expected)
+    end
   end
 
 end

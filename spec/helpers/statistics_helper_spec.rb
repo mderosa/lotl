@@ -18,17 +18,17 @@ describe StatisticsHelper do
 
   describe "data conversion to our control chart" do
     it "should have an xbarbar element equal to 5" do
-      rslt = to_control_chart(@data)
+      rslt = to_counts_control_chart(@data)
       rslt[:xbarbar].should eq(5)
     end
 
     it "should have an xbarbar of nil when the data is empty" do
-      rslt = to_control_chart([])
+      rslt = to_counts_control_chart([])
       rslt[:xbarbar].should be_nil
     end
 
     it "should not allow lcl to be less than zero" do
-      rslt = to_control_chart(@data)
+      rslt = to_counts_control_chart(@data)
       rslt[:xbarbar].should eq(5)
 
       rslt[:labels][0].should  eq("2011-07-03")
@@ -145,13 +145,32 @@ describe StatisticsHelper do
       end
     end
 
-
     describe "calculation of upper control limit" do
       it "should return appoximately x_barbar + 3 + s_bar for large samples" do
         actual = xbar_ucl 5, 1, 100
         actual.should > 5.3
         actual.should < 5.4
       end
+    end
+
+    describe "subgroup_averages" do
+      it "should return [] for empty input" do
+        subgroup_averages([], 3).should eq([])
+      end
+
+      it "should only return averages of fully sized subgroups" do
+        subgroup_averages([[3,3,3], [2,2]], 3).should eq([3])
+      end
+    end
+  end
+
+  describe "subgroup" do
+    it "should return and empty set for an empty input" do
+      subgroup([], 3).should eq([])
+    end
+
+    it "should group by the grouping number" do
+      subgroup([1,2,3,4,4], 3).should eq([[1,2,3], [4,4]])
     end
   end
 
