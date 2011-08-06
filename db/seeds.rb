@@ -9,9 +9,12 @@
 # run this file with 'bin/rake db:seed RAILS_ENV=test'
 if Rails.env.test?
 
-  Task.delete_all
-  Project.delete_all
-  User.delete_all
+  p = Project.where(:name => "Project1")
+  p.delete
+  u = User.where(:email => "marc@email.com")
+  u.delete
+  u = User.where(:email => "hacker@lulz.com")
+  u.delete
 
   user1 = User.create!(:password => "password", :email => "marc@email.com")
   user1.active = true
