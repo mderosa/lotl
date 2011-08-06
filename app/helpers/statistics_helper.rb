@@ -160,6 +160,11 @@ module StatisticsHelper
     temp
   end
 
+  def maybe_round x, prec
+    return nil if x.nil?
+    x.round(prec)
+  end
+
 end
 
 # error: forgot to return data from a function
