@@ -30,5 +30,24 @@
   <div id="cost_chart"></div>
   <%= javascript_include_tag "costchart" %>
 
+    <div class="ltl-stats span-12 prepend-1 loud">
+    <h5><%= t ".data" %></h5>
+    <ul>
+      <li><%= t ".upper-control-limit" %> (ucl): <%= @cost_chart_data[:xbarucl].round(2) %> hours</li>
+      <li><%= t ".process-average" %> (avg): <%= @cost_chart_data[:xbarbar].round(2) %> hours</li>
+      <li><%= t ".lower-control-limit" %> (lcl): <%= @cost_chart_data[:xbarlcl].round(2) %> hours</li>
+    </ul>
+  </div>
+  <div class="ltl-stats-explanation span-10 last append-1">
+    <h5><%= t ".comments" %></h5>
+    <span class="quiet small">
+    Attempt to introduce code to the site at a steady rate. If data exceeds the ucl then the group may 
+    be taking risks by pushing too much functionality at one time or there may be
+    extra-process effects that are interfering with a steady pace of of code introduction.
+    If the data falls below the lcl that may be a sign of increasing efficiency.
+    </span>
+  </div>
+  <hr/>
+
 </div>
 
