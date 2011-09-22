@@ -33,9 +33,21 @@
     <div class="ltl-stats span-12 prepend-1 loud">
     <h5><%= t ".data" %></h5>
     <ul>
-      <li><%= t ".upper-control-limit" %> (ucl): <%= maybe_round @cost_chart_data[:xbarucl], 2 %> hours</li>
-      <li><%= t ".process-average" %> (avg): <%= maybe_round @cost_chart_data[:xbarbar], 2 %> hours</li>
-      <li><%= t ".lower-control-limit" %> (lcl): <%= maybe_round @cost_chart_data[:xbarlcl], 2 %> hours</li>
+      <li><%= t ".upper-control-limit" %> (ucl): 
+	<% if @cost_chart_data[:xbarucl] %>
+	<%= maybe_round @cost_chart_data[:xbarucl], 2 %> hours
+	<% end %>
+      </li>
+      <li><%= t ".process-average" %> (avg): 
+	<% if @cost_chart_data[:xbarbar] %>
+	<%= maybe_round @cost_chart_data[:xbarbar], 2 %> hours
+	<% end %>
+      </li>
+      <li><%= t ".lower-control-limit" %> (lcl): 
+	<% if @cost_chart_data[:xbarlcl] %>
+	<%= maybe_round @cost_chart_data[:xbarlcl], 2 %> hours
+	<% end %>
+      </li>
     </ul>
   </div>
   <div class="ltl-stats-explanation span-10 last append-1">

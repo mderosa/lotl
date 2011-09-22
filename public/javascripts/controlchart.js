@@ -58,7 +58,8 @@
 	.font("12px sans-serif")
 
 	// add right hand side y axis labels		
-	var hrule = pnl.add(pv.Rule)
+    if (xbardata.xbarlcl !== null && xbardata.xbarbar !== null && xbardata.xbarucl != null) {
+    pnl.add(pv.Rule)
 	.data(function() {
 		if (xbardata.xbarlcl != 0) {
 		    return [[xbardata.xbarlcl, "lcl"], [xbardata.xbarbar, "avg"], [xbardata.xbarucl, "ucl"]]
@@ -73,6 +74,7 @@
         .textAlign("left")
         .textBaseline("middle")
 	.textMargin(5);
+   }
 
     pnl.render();
 
