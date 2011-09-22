@@ -8,7 +8,7 @@ class TasksController < ApplicationController
     set_current_project 
 
     @proposed_tasks = Task.where("progress = 'proposed' AND project_id = :project_id", params)
-      .order("priority DESC").limit(15).offset(0)
+      .order("COALESCE(priority, 0) DESC").limit(15).offset(0)
     @inProgress_tasks = Task.where("progress = 'inProgress' AND project_id = :project_id", params)
       .order("work_started_at DESC").limit(15).offset(0)
     @delivered_tasks = Task.where("progress = 'delivered' AND project_id = :project_id", params)
