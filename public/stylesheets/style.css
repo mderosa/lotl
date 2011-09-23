@@ -7,6 +7,10 @@
     font-family: Times New Roman;
 }
 
+.ltl-application-menu {
+    background-image: url(/images/menu-bkgrnd.png);
+}
+
 .ltl-application-menu a {
     text-decoration: underline;
     color: #FFA900;
@@ -55,6 +59,7 @@ div.field_with_errors > input {
 
 header > a > img {
     padding-top: 18px;
+    vertical-align: top;
 }
 
 header > a {
@@ -64,7 +69,6 @@ header > a {
 header .ltl-menu {
     border-left: 1px solid #DDD;
     border-right: 1px solid #DDD;
-    border-bottom: 1px solid #DDD;
 }
 
 header nav {
@@ -109,7 +113,7 @@ input[type="submit"] {
     border: 1px solid #CCC;
 }
 
-.ltl-task-title > a {
+div.ltl-task-title > a {
     padding-left: 0.5em;
     font-weight: bolder;
 }
@@ -133,10 +137,17 @@ input[type="submit"] {
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     border: solid 1px #FFCF73;
+    padding-top: 2px;
+    padding-bottom: 1px;
+}
+
+nav.ltl-project-menu {
+    background-image: url(/images/menu-bkgrnd.png);
+    padding-right: 10px;
 }
 
 .ltl-projects-list > h5 {
-    margin-bottom: 0.5em;
+    margin-bottom: 0em;
 }
 
 .ltl-project-action {
@@ -153,8 +164,8 @@ div.ltl-task-colab {
 
 div.ltl-task-info {
     font-style: italic;
-    font-size:.8em;
-    line-height:1.2em;
+    font-size: 0.7em;
+    //height: 25px;
 }
 
 .ltl-project-action .large {
