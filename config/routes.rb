@@ -13,7 +13,7 @@ Lotl::Application.routes.draw do
   resources :projects do
     resources :tasks
     resources :collaborators, :only => [:create, :destroy]
-    resources :statistics, :only => [:index]
+    resources :statistics, :only => [:index, :show]
   end
 
   # The priority is based upon order of creation:
