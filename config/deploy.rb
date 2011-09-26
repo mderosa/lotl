@@ -31,7 +31,7 @@ role :db, :primary => true, do ltl_web_server end         # This is where Rails 
 namespace :env do
   task :test_env do
     set :user, "parsival"
-    set :ltl_web_server, "192.168.2.4"
+    set :ltl_web_server, "192.168.2.2"
   end
 
   task :pro_env do
