@@ -49,6 +49,9 @@ class TasksController < ApplicationController
 
   # POST /tasks
   # POST /tasks.xml
+  # Im adding the collaborator here but I dont add it to the tasks_users table. The reason is that the tasks_users table is 
+  # mainly to record people that are doing actual work on the project and people that might propose a task are not necessarily
+  # going to actually do any work on the task
   def create
     @task = Task.new(params[:task])
     @task.project_id = params[:project_id]
@@ -72,10 +75,13 @@ class TasksController < ApplicationController
   # PUT /tasks/1.xml
   def update
     @task = Task.find(params[:id])
-    @task.add_collaborator current_user
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
+        if not @task.users.exists?(current_user.id)
+          @task.users << current_user
+          @task.add_collaborator current_user
+        end 
         format.html { 
           redirect_to(project_tasks_path(params[:project_id]))
         }
