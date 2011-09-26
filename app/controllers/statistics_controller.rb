@@ -5,8 +5,20 @@ class StatisticsController < ApplicationController
   
   def index
     project_id = params[:project_id]
-    @chart_data = fetch_delivery_count_per_day(project_id, delivery_count_time_range(project_id))
+    @counts_chart_data = fetch_delivery_count_per_day(project_id, delivery_count_time_range(project_id))
     @cost_chart_data = cost_chart
+  end
+
+  def charts
+    project_id = params[:project_id]
+    mode = params[:mode]
+    if mode == "individual"
+      @counts_chart_data = fetch_delivery_count_per_day(project_id, delivery_count_time_range(project_id)), current_user
+      @cost_chart_data = cost_chart current_user
+    elsif
+      @counts_chart_data = fetch_delivery_count_per_day(project_id, delivery_count_time_range(project_id))
+      @cost_chart_data = cost_chart
+    end  
   end
 
   # delivery_count_time_range :: {:from => Date, :to => Date}
@@ -27,11 +39,13 @@ class StatisticsController < ApplicationController
   # Fetch the delivery count per day trying to find the data in the cache first
   def fetch_delivery_count_per_day(project_id, 
                                    delivery_date_range, 
-                                   expires_at = Time.new.utc.tomorrow.midnight)
+                                   expires_at = Time.new.utc.tomorrow.midnight,
+                                   user = nil)
     from = delivery_date_range[:from]
     to = delivery_date_range[:to]
-    data = cache.fetch "#{project_id}.delivery_count_per_day", :expires_in => (expires_at - Time.new.utc) do
-      raw_delivery_data = Task.delivery_count_per_day(project_id, from, to)
+    key = user ? "#{project_id}.#{user.id}.delivery_count_per_day" : "#{project_id}.delivery_count_per_day"
+    data = cache.fetch key, :expires_in => (expires_at - Time.new.utc) do
+      raw_delivery_data = Task.delivery_count_per_day(project_id, from, to, user)
       deliveries_by_day = fill_date_gaps(raw_delivery_data, from, to)
       to_counts_control_chart(deliveries_by_day)
     end
@@ -39,8 +53,15 @@ class StatisticsController < ApplicationController
 
   # cost_chart :: {:xbarbar: Maybe Double, :xbarucl: Maybe Double,
   #                :xbarlcl: Maybe Double, :subgroupavgs: [Double]}
-  def cost_chart
-    ts = Task.where("project_id = ? AND delivered_at is not null", params[:project_id]).order("delivered_at desc").limit(120)
+  def cost_chart(user = nil)
+    ts = nil
+    if (user)
+      ts = Task.from("tasks t INNER JOIN tasks_users tu ON tu.task_id = t.id")
+        .where("t.project_id = ? AND t.delivered_at is not null AND tu.user_id = ?", params[:project_id], user.id)
+        .order("t.delivered_at desc").limit(120)
+    else
+      ts = Task.where("project_id = ? AND delivered_at is not null", params[:project_id]).order("delivered_at desc").limit(120)
+    end
     ts.delete_if do |t| t.work_started_at == t.delivered_at end
     ln_cost = ts.reverse.map do |t|
       Math.log(calc_cost t)

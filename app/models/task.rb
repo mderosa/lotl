@@ -50,9 +50,10 @@ class Task < ActiveRecord::Base
     end
   end
 
-  def self.delivery_count_per_day(project_id, from, to)
+  def self.delivery_count_per_day(project_id, from, to, user = nil)
     id = project_id.to_i
-    sql = "SELECT date(delivered_at) as delivered_at, count(*)
+    if user.nil?
+      sql = "SELECT date(delivered_at) as delivered_at, count(*)
 FROM tasks
 WHERE delivered_at is not null
 AND project_id = #{id}
@@ -60,7 +61,20 @@ AND delivered_at >= '#{from}'::date
 AND delivered_at <= '#{to}'::date + 1
 GROUP BY date(delivered_at)
 ORDER BY date(delivered_at)"
-    Task.connection.select_all sql
+      Task.connection.select_all sql
+    elsif
+      sql = "SELECT date(t.delivered_at) as delivered_at, count(*)
+FROM tasks t
+INNER JOIN tasks_users tu ON tu.task_id = t.id 
+WHERE t.delivered_at is not null
+AND t.project_id = #{id}
+AND t.delivered_at >= '#{from}'::date
+AND t.delivered_at <= '#{to}'::date + 1
+AND tu.user_id = #{user.id}
+GROUP BY date(t.delivered_at)
+ORDER BY date(t.delivered_at)"
+      Task.connection.select_all sql
+    end
   end
 
   def add_collaborator(user)
