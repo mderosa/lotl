@@ -9,11 +9,11 @@ class StatisticsController < ApplicationController
     @cost_chart_data = cost_chart
   end
 
-  def charts
+  def show
     project_id = params[:project_id]
-    mode = params[:mode]
+    mode = params[:id]
     if mode == "individual"
-      @counts_chart_data = fetch_delivery_count_per_day(project_id, delivery_count_time_range(project_id)), current_user
+      @counts_chart_data = fetch_delivery_count_per_day(project_id, delivery_count_time_range(project_id), Time.new.utc.tomorrow.midnight, current_user)
       @cost_chart_data = cost_chart current_user
     elsif
       @counts_chart_data = fetch_delivery_count_per_day(project_id, delivery_count_time_range(project_id))
@@ -56,9 +56,9 @@ class StatisticsController < ApplicationController
   def cost_chart(user = nil)
     ts = nil
     if (user)
-      ts = Task.from("tasks t INNER JOIN tasks_users tu ON tu.task_id = t.id")
-        .where("t.project_id = ? AND t.delivered_at is not null AND tu.user_id = ?", params[:project_id], user.id)
-        .order("t.delivered_at desc").limit(120)
+      ts = Task.from("tasks INNER JOIN tasks_users ON tasks_users.task_id = tasks.id")
+        .where("tasks.project_id = ? AND tasks.delivered_at is not null AND tasks_users.user_id = ?", params[:project_id], user.id)
+        .order("tasks.delivered_at desc").limit(120)
     else
       ts = Task.where("project_id = ? AND delivered_at is not null", params[:project_id]).order("delivered_at desc").limit(120)
     end
