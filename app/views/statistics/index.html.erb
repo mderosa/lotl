@@ -1,65 +1,20 @@
+<div class="span-12">
+  <h2>
+    <%= link_to "Individual Statistics", project_statistic_path(params[:project_id], "individual") %> 
+  </h2>
+  <p>
+    Delivery count and cost charts for the currently logged in developer. These statistics are only available
+    to the individual developer they belong to.
+  </p>
+</div>
 
-<div class="ltl-chart span-24 last">
-  <h2><%= t ".deliveries-per-day" %></h2>
-
-  <%= javascript_tag "var xbardata = #{JSON.dump(@counts_chart_data)}" %>
-  <div id="xbar"></div>
-  <%= javascript_include_tag "controlchart" %>
-
-  <div class="ltl-stats span-12 prepend-1 loud">
-    <h5><%= t ".data" %></h5>
-    <ul>
-      <li><%= t ".upper-control-limit" %> (ucl): <%= @counts_chart_data[:xbarucl] %></li>
-      <li><%= t ".process-average" %> (avg): <%= @counts_chart_data[:xbarbar] %></li>
-      <li><%= t ".lower-control-limit" %> (lcl): <%= @counts_chart_data[:xbarlcl] %></li>
-    </ul>
-  </div>
-  <div class="ltl-stats-explanation span-10 last append-1">
-    <h5><%= t ".comments" %></h5>
-    <span class="quiet small">
-    Attempt to raise the average number of deliveries per day. If data exceeds the ucl then the group may be
-    improving their delivery rate (good) or 
-    grouping all their deliveries together in one 'big bang' (bad). If the data falls below the lcl then the group is
-    losing velocity.
-    </span>
-  </div>
-  <hr/>
-
-  <h2>Cost Chart</h2>
-  <%= javascript_tag "var cost_chart_data = #{JSON.dump(@cost_chart_data)}" %>
-  <div id="cost_chart"></div>
-  <%= javascript_include_tag "costchart" %>
-
-    <div class="ltl-stats span-12 prepend-1 loud">
-    <h5><%= t ".data" %></h5>
-    <ul>
-      <li><%= t ".upper-control-limit" %> (ucl): 
-	<% if @cost_chart_data[:xbarucl] %>
-	<%= maybe_round @cost_chart_data[:xbarucl], 2 %> hours
-	<% end %>
-      </li>
-      <li><%= t ".process-average" %> (avg): 
-	<% if @cost_chart_data[:xbarbar] %>
-	<%= maybe_round @cost_chart_data[:xbarbar], 2 %> hours
-	<% end %>
-      </li>
-      <li><%= t ".lower-control-limit" %> (lcl): 
-	<% if @cost_chart_data[:xbarlcl] %>
-	<%= maybe_round @cost_chart_data[:xbarlcl], 2 %> hours
-	<% end %>
-      </li>
-    </ul>
-  </div>
-  <div class="ltl-stats-explanation span-10 last append-1">
-    <h5><%= t ".comments" %></h5>
-    <span class="quiet small">
-    Attempt to introduce code to the site at a steady rate. If data exceeds the ucl then the group may 
-    be taking risks by pushing too much functionality at one time or there may be
-    extra-process effects that are interfering with a steady pace of of code introduction.
-    If the data falls below the lcl that may be a sign of increasing efficiency.
-    </span>
-  </div>
-  <hr/>
-
+<div class="span-=12 last">
+  <h2>
+    <%= link_to "Team Statistics", project_statistic_path(params[:project_id], "team") %>
+  </h2>
+  <p>
+    Delivery count and cost charts for the entire project team. These provide the best measure of the overall
+    team capability.
+  </p>
 </div>
 
