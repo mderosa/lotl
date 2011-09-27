@@ -96,7 +96,7 @@ header nav.ltl-project-menu > a {
 }
 
 header nav.ltl-application-menu > a {
-    border-left: 1px groove #333;
+    border-left: 1px ridge #333;
     padding: 0 15px;
     text-decoration: underline;
     color: #FF9900;
