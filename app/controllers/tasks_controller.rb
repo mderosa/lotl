@@ -76,11 +76,11 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
 
+    @task.add_collaborator current_user
     respond_to do |format|
       if @task.update_attributes(params[:task])
         if not @task.users.exists?(current_user.id)
           @task.users << current_user
-          @task.add_collaborator current_user
         end 
         format.html { 
           redirect_to(project_tasks_path(params[:project_id]))
