@@ -3,7 +3,7 @@
 }
 
 .container h2 {
-    color: #FFA900;
+    color: #FF9900;
     font-family: Times New Roman;
 }
 
@@ -17,11 +17,8 @@ div.ltl-icon-header h2 {
 
 .ltl-application-menu {
     background-image: url(/images/menu-bkgrnd.png);
-}
-
-.ltl-application-menu a {
-    text-decoration: underline;
-    color: #FFA900;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
 }
 
 .subpoint {
@@ -77,6 +74,7 @@ header > a {
 header .ltl-menu {
     border-left: 1px solid #DDD;
     border-right: 1px solid #DDD;
+    margin-bottom: 1em;
 }
 
 header nav {
@@ -85,16 +83,23 @@ header nav {
 }
 
 header nav > span {
-    color: #FFA900;
+    color: #FF9900;
     text-align: center;
     padding: 0 15px 0 15px;
+    border-right: 1px groove #333;
 }
 
-header nav > a {
-    border-left: 1px ridge #333;
+header nav.ltl-project-menu > a {
     border-right: 1px groove #333;
     padding: 0 15px;
     text-decoration: none;
+}
+
+header nav.ltl-application-menu > a {
+    border-left: 1px groove #333;
+    padding: 0 15px;
+    text-decoration: underline;
+    color: #FF9900;
 }
 
 input[type="submit"] {
@@ -144,6 +149,8 @@ div.ltl-task-title > a {
 nav.ltl-project-menu {
     background-image: url(/images/menu-bkgrnd.png);
     padding-right: 10px;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
 }
 
 .ltl-projects-list > h5 {
