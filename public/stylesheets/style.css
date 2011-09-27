@@ -7,6 +7,14 @@
     font-family: Times New Roman;
 }
 
+div.ltl-icon-header > a > img {
+    vertical-align: middle;
+}
+div.ltl-icon-header h2 {
+    vertical-align: middle;
+    display: inline;
+}
+
 .ltl-application-menu {
     background-image: url(/images/menu-bkgrnd.png);
 }
@@ -118,27 +126,19 @@ div.ltl-task-title > a {
     font-weight: bolder;
 }
 
-/** ineffective
-.ltl-bucket-tasks {
-    height: 284px;
+.ltl-bucket-title > span {
+    font-size: 2em;
+    font-family: Times New Roman;
+    color: #F90;
+    vertical-align: middle;
 }
-**/
 
-.ltl-bucket-title {
+.ltl-bucket-title > a {
     font-weight: bold;
-    font-size: 120%;
-    color: #bf8e30;
-    text-align: center;
-    background-color: #FFCF73;
-    -moz-border-radius-topleft: 4px;
-    -moz-border-radius-topright: 4px;
-    -webkit-border-top-left-radius: 4px;
-    -webkit-border-top-right-radius: 4px;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border: solid 1px #FFCF73;
-    padding-top: 2px;
-    padding-bottom: 1px;
+}
+
+.ltl-bucket-title > img {
+    vertical-align: middle;
 }
 
 nav.ltl-project-menu {

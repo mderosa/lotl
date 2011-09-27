@@ -2,7 +2,8 @@
 <div class="ltl-tasks span-24 last">
   <div class="ltl-task-bucket span-8">
     <div class="ltl-bucket-title span-8 last">
-      <%= t ".proposed" %>
+      <%= image_tag 'proposed.png' %>
+      <span><%= t ".proposed" %></span>
       <%= link_to "[#{t('.new')}]", new_project_task_path(@project), :id => 'new' %>
     </div>
     <div class="ltl-bucket-tasks span-8 last">
@@ -29,7 +30,10 @@
   </div> <%# proposed bucket %>
 
   <div class="ltl-task-bucket span-8">
-    <div class="ltl-bucket-title span-8 last"><%= t ".work-in-progress" %></div>
+    <div class="ltl-bucket-title span-8 last">
+      <%= image_tag 'inprogress.png' %>
+      <span><%= t ".work-in-progress" %></span>
+    </div>
     <div class="ltl-bucket-tasks span-8 last">
       <% @inProgress_tasks.each do |task| %>
       <div class="ltl-task-summary span-8 last">
@@ -51,7 +55,10 @@
   </div> <%# in progress bucket end %>
 
   <div class="ltl-task-bucket span-8 last">
-    <div class="ltl-bucket-title span-8 last"><%= t ".delivered-to-user" %></div>
+    <div class="ltl-bucket-title span-8 last">
+      <%= image_tag 'delivered.png' %>
+      <span><%= t ".delivered-to-user" %></span>
+    </div>
     <div class="ltl-bucket-tasks span-8 last">
       <% @delivered_tasks.each do |task| %>
       <div class="ltl-task-summary span-8 last">

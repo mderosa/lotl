@@ -1,19 +1,28 @@
 <div class="span-12">
-  <h2>
-    <%= link_to "Individual Statistics", project_statistic_path(params[:project_id], "individual") %> 
-  </h2>
+  <div class="ltl-icon-header">
+    <% logo_individual = image_tag 'individual.png' %>
+    <%= link_to logo_individual, project_statistic_path(params[:project_id], "individual") %>
+    <h2>
+      Individual Statistics
+    </h2>
+  </div>
+
   <p>
     Delivery count and cost charts for the currently logged in developer. These statistics are only available
     to the individual developer they belong to.
   </p>
 </div>
 
-<div class="span-=12 last">
-  <h2>
-    <%= link_to "Team Statistics", project_statistic_path(params[:project_id], "team") %>
-  </h2>
+<div class="span-12 last">
+  <div class="ltl-icon-header">
+    <% logo_team = image_tag 'team.png' %>
+    <%= link_to logo_team, project_statistic_path(params[:project_id], "individual") %>
+    <h2>
+      Team Statistics
+    </h2>
+  </div>
   <p>
-    Delivery count and cost charts for the entire project team. These provide the best measure of the overall
+    Delivery count and cost charts for the entire project team. These statistics provide the best measure of the overall
     team capability.
   </p>
 </div>
