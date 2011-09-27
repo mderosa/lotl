@@ -121,4 +121,5 @@ class TasksController < ApplicationController
 
 end
 
-# errors: forgot to add : before a map key
+# error: forgot to add : before a map key
+# error: moved add_collaborator after a save command. There were no futher save commnands so setting collaborators didnt happen 
