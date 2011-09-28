@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate
     if not user_authenticated?
-      flash[:notice] = "please login first"
+      flash[:notice] = t "flash.msg.please-login"
       redirect_to home_path
     end
   end

@@ -1,4 +1,3 @@
-
 en:
   entrance:
     home:
@@ -19,6 +18,11 @@ en:
       how-do-i-use-lotl: How do I use LOOP?
   statistics:
     index:
+      individual-statistics: Individual Statistics
+      team-statistics: Team Statistics
+      explanation-individual: Delivery count and cost charts for the currently logged in developer. These statistics are only available to the individual developer they belong to.
+      explanation-team: Delivery count and cost charts for the entire project team. These statistics provide the best measure of the overall team capability.
+    show:
       deliveries-per-day: Deliveries per Day
       upper-control-limit: Upper control limit
       process-average: Process average
@@ -51,6 +55,8 @@ en:
       low: Low
       medium: Medium
       high: High
+      destroy: Destroy
+      by-deleting-this-task: By deleting this task you are indicating that the effort invested so far has been wasted and no part of it will be delivered. Continue?      
     new:
       new-task: New task
     index:
@@ -137,3 +143,6 @@ en:
       already-removed: The user has already been removed from the project
       access-denied: Access to resource denied
       task-created: Task was successfully created
+      project-stale-object: The project was modified while you were editing it. Please try again
+      task-stale-object: The task was modified while you were editing it. Please try again
+      activation-success: Your account has been activated! To begin, create a new project using the 'Create a Project' form below.

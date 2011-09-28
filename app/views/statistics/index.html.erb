@@ -3,13 +3,12 @@
     <% logo_individual = image_tag 'individual.png' %>
     <%= link_to logo_individual, project_statistic_path(params[:project_id], "individual") %>
     <h2>
-      Individual Statistics
+      <%= t ".individual-statistics" %>
     </h2>
   </div>
 
   <p>
-    Delivery count and cost charts for the currently logged in developer. These statistics are only available
-    to the individual developer they belong to.
+    <%= t ".explanation-individual" %>
   </p>
 </div>
 
@@ -18,12 +17,11 @@
     <% logo_team = image_tag 'team.png' %>
     <%= link_to logo_team, project_statistic_path(params[:project_id], "team") %>
     <h2>
-      Team Statistics
+      <%= t ".team-statistics" %>
     </h2>
   </div>
   <p>
-    Delivery count and cost charts for the entire project team. These statistics provide the best measure of the overall
-    team capability.
+    <%= t ".explanation-team" %>
   </p>
 </div>
 

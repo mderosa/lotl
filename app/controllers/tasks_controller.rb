@@ -93,7 +93,7 @@ class TasksController < ApplicationController
     end
 
   rescue ActiveRecord::StaleObjectError
-    flash[:error] = "The task was modified while you were editing it. Please try again"
+    flash[:error] = t "flash.msg.task-stale-object"
     redirect_to(project_tasks_path(params[:project_id]))
   end
 

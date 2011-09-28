@@ -79,7 +79,7 @@ class ProjectsController < ApplicationController
     end
 
   rescue ActiveRecord::StaleObjectError
-    flash[:error] = "The project was modified while you were editing it. Please try again"
+    flash[:error] = t "flash.msg.project-stale-object"
     redirect_to(projects_path)
   end
 

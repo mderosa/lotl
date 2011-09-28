@@ -18,6 +18,11 @@ zh:
       how-do-i-use-lotl: 我怎么用LOOP?
   statistics:
     index:
+      individual-statistics: 个人统计
+      team-statistics: 整个组的统计
+      explanation-individual: Delivery count and cost charts for the currently logged in developer. These statistics are only available to the individual developer they belong to.
+      explanation-team: Delivery count and cost charts for the entire project team. These statistics provide the best measure of the overall team capability.
+    show:
       deliveries-per-day: 每天的发布次数
       upper-control-limit: 控制上线
       process-average: 过程平均
@@ -50,6 +55,8 @@ zh:
       low: 低
       medium: 中
       high: 高
+      destroy: 删除
+      by-deleting-this-task: 当你删除这信息，你对系统表示这任务所实现的功能全作废，不会提供给用户。继续吗？
     new:
       new-task: 新任务
     index:
@@ -138,3 +145,6 @@ zh:
       already-removed: 已经不在这个项目
       access-denied: 不能访问这个资源
       task-created: 成功创造了任务
+      project-stale-object: 别人同时跟你更新了这个项目。请重新式一边
+      task-stale-object: 别人同时跟你更新了这个任务。请重新式一边
+      activation-success: 你的帐户活跃成功! 首先，用一下的‘创造一个项目’表单，创造一个新项目

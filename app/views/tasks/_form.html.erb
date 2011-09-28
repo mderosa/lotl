@@ -42,12 +42,6 @@
   <%= f.select :priority, {"" => "", t(".low") => "1", t(".medium") => "2", t(".high") => "3"} %>
 </div>
 
-<!--
-<div class="field span-12 last">
-  <%= f.label :namespace, :class => "span-3" %>
-  <%= f.text_field :namespace, :class => "span-9 last" %>
-</div>
--->
 <div class="actions span-8">
   <%= f.submit %>
 </div>
@@ -56,10 +50,10 @@
   <% if (not @task.new_record?) %> 
     <% if @task.progress == "proposed" %>
       &nbsp; &nbsp;
-      <%= link_to 'Destroy', project_task_path(params[:project_id], params[:id]), :method => :delete %>
+      <%= link_to t('.destroy'), project_task_path(params[:project_id], params[:id]), :method => :delete %>
     <% elsif @task.progress == "inProgress" %>
       &nbsp; &nbsp;
-      <%= link_to 'Destroy', project_task_path(params[:project_id], params[:id]), :method => :delete, :confirm => 'By deleting this task you are indicating that the effort invested so far has been wasted and no part of it will be delivered. Continue?' %>
+      <%= link_to t('.destroy'), project_task_path(params[:project_id], params[:id]), :method => :delete, :confirm => t('.by-deleting-this-task') %>
     <% end %>
   <% end %>
 </div>
