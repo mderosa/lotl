@@ -48,9 +48,20 @@
   <%= f.text_field :namespace, :class => "span-9 last" %>
 </div>
 -->
-<div class="actions span-12 last">
-  <%= f.submit %>&nbsp;&nbsp;&nbsp;&nbsp;
+<div class="actions span-8">
+  <%= f.submit %>
+</div>
+<div class="span-4 last" style="text-align: right">
   <%= link_to t(".back"), project_tasks_path(params[:project_id]) %>
+  <% if (not @task.new_record?) %> 
+    <% if @task.progress == "proposed" %>
+      &nbsp; &nbsp;
+      <%= link_to 'Destroy', project_task_path(params[:project_id], params[:id]), :method => :delete %>
+    <% elsif @task.progress == "inProgress" %>
+      &nbsp; &nbsp;
+      <%= link_to 'Destroy', project_task_path(params[:project_id], params[:id]), :method => :delete, :confirm => 'By deleting this task you are indicating that the effort invested so far has been wasted and no part of it will be delivered. Continue?' %>
+    <% end %>
+  <% end %>
 </div>
 <% end %>
 

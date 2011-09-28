@@ -201,6 +201,14 @@ describe TasksController do
       }.to change(Task, :count).by(-1)
     end
 
+    it "does not destroy a task if it is already has the status 'inProgress'" do
+      @def_task.progress = 'inProgress'
+      @def_task.save
+      expect {
+        delete :destroy, :id => @def_task.id.to_s, :project_id => @def_task.project_id
+      }.to change(Task, :count).by(0)
+    end
+
     it "redirects to the tasks list" do
       delete :destroy, :id => @def_task.id.to_s, :project_id => @def_task.project_id
       response.should redirect_to(project_tasks_url(@def_task.project_id))

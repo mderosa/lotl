@@ -9,7 +9,7 @@ class TasksController < ApplicationController
 
     @proposed_tasks = Task.where("progress = 'proposed' AND project_id = :project_id", params)
       .order("COALESCE(priority, 0) DESC").limit(15).offset(0)
-    @inProgress_tasks = Task.where("progress = 'inProgress' AND project_id = :project_id", params)
+    @inProgress_tasks = Task.where("progress = 'inProgress' AND project_id = :project_id AND terminated_at is NULL", params)
       .order("work_started_at DESC").limit(15).offset(0)
     @delivered_tasks = Task.where("progress = 'delivered' AND project_id = :project_id", params)
       .order("delivered_at DESC").limit(15).offset(0)
@@ -97,7 +97,14 @@ class TasksController < ApplicationController
   # DELETE /tasks/1.xml
   def destroy
     @task = Task.find(params[:id])
-    @task.destroy
+    if @task.progress == "proposed"
+      @task.destroy
+    elsif @task.progress = "inProgress"
+      @task.terminated_at = Time.new
+      @task.save
+    else 
+      raise RuntimeError, 'Task.progress has an invalid state'
+    end
 
     respond_to do |format|
       format.html { redirect_to(project_tasks_path(params[:project_id])) }
@@ -123,3 +130,4 @@ end
 
 # error: forgot to add : before a map key
 # error: moved add_collaborator after a save command. There were no futher save commnands so setting collaborators didnt happen 
+# error: sql query did not restrict the inProgess list to elements with termination data not NULL
