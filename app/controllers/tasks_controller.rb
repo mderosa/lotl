@@ -91,6 +91,10 @@ class TasksController < ApplicationController
         format.xml  { render :xml => @task.errors, :status => :unprocessable_entity }
       end
     end
+
+  rescue ActiveRecord::StaleObjectError
+    flash[:error] = "The task was modified while you were editing it. Please try again"
+    redirect_to(project_tasks_path(params[:project_id]))
   end
 
   # DELETE /tasks/1

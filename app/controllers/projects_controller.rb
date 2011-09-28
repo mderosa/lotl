@@ -77,6 +77,10 @@ class ProjectsController < ApplicationController
         format.xml  { render :xml => @project.errors, :status => :unprocessable_entity }
       end
     end
+
+  rescue ActiveRecord::StaleObjectError
+    flash[:error] = "The project was modified while you were editing it. Please try again"
+    redirect_to(projects_path)
   end
 
   # DELETE /projects/1
