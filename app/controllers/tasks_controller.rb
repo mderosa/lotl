@@ -102,6 +102,7 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find(params[:id])
     if @task.progress == "proposed"
+      @task.users.clear
       @task.destroy
     elsif @task.progress = "inProgress"
       @task.terminated_at = Time.new
