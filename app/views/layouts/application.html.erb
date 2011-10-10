@@ -27,10 +27,17 @@
     <%= csrf_meta_tag %>
 
   </head>
-  <body>
-    <div class="container showgri">
+  <body class="bg-grey">
+    <div id="wrapper">
 
-      <%= render "layouts/header" %>
+      <div class="header-grey">
+	<div class="container"
+	     <%= render "layouts/header" %>
+        </div>
+        <hr class="header-border"/>
+      </div>
+
+      <div class="container showgri">
 
       <% flash.each do |k, v| %>
       <div class="ltl-flash span-8 last <%= k.to_s %>" style="margin-left:310px; margin-right:310px">
@@ -40,6 +47,13 @@
 
       <%= yield %>
 
+
+      </div>
+      <div id="push"></div>
+    </div>
+
+    <div id="footer" class="footer-grey">
+      <div class="container showgri">
       <%= render "layouts/footer" %>
       
       <% if Rails.env.development? %>
@@ -48,6 +62,8 @@
 	<%= debug(session) %>
       </div>
       <% end %>
+      </div>
     </div>
+    
   </body>
 </html>

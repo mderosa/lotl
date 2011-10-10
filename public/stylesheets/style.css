@@ -1,3 +1,43 @@
+html, body {
+    height: 100%;
+}
+
+#wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -54px;
+}
+
+#footer, #push {
+    height: 54px;
+}
+
+body.bg-grey {
+    background-color: #fbfbfb;
+}
+
+div.header-grey {
+    background-color: #ECECEC;
+    background: -moz-linear-gradient(#ECECEC, #E2E2E2) repeat scroll 0 0 transparent;
+}
+hr.header-border {
+    color: #BBB;
+}
+
+div#footer {
+    border-top: 1px solid #CCC;
+    margin-top: 17px;
+}
+div.footer-grey {
+    background-color: #ECECEC;
+    background: -moz-linear-gradient(#ECECEC, #E2E2E2) repeat scroll 0 0 transparent;
+}
+
+div.bg-white {
+    background-color: #FFF
+}
+
 .container a {
     color: #1142AA;
 }
@@ -15,11 +55,11 @@ div.ltl-icon-header h2 {
     display: inline;
 }
 
-.ltl-application-menu {
-    background-image: url(/images/menu-bkgrnd.png);
-    padding-top: 0.25em;
-    padding-bottom: 0.25em;
-}
+/* .ltl-application-menu { */
+/*     background-image: url(/images/menu-bkgrnd.png); */
+/*     padding-top: 0.25em; */
+/*     padding-bottom: 0.25em; */
+/* } */
 
 .subpoint {
     color: #4373D5;
@@ -74,7 +114,6 @@ header > a {
 header .ltl-menu {
     border-left: 1px solid #DDD;
     border-right: 1px solid #DDD;
-    margin-bottom: 1em;
 }
 
 header nav {
@@ -103,7 +142,9 @@ header nav.ltl-application-menu > a {
 }
 
 input[type="submit"] {
-    -moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
     background: -moz-linear-gradient(center top, #F1F1F1, #E1E1E1);
     border: 1px solid #BBB;
     color: #666;
@@ -147,6 +188,9 @@ div.ltl-task-title > a {
 }
 
 nav.ltl-project-menu {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
     background-image: url(/images/menu-bkgrnd.png);
     padding-right: 10px;
     padding-top: 0.25em;
@@ -217,9 +261,8 @@ error: added commas to three part declaration for border-left
     font-size: 125%;
 }
 
-footer > hr {
-    margin-top: 1.5em;
-    margin-bottom: 0.5em;
+footer {
+    padding-top: 0.5em;
 }
 
 footer div.ltl-footer-bin {

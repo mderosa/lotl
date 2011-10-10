@@ -5,24 +5,23 @@
 
   <% if show_menu?(params) %>
   <div class="span-24 ltl-menu last">
-    <nav class="ltl-project-menu span-21 last">
+    <nav class="ltl-project-menu span-24 last">
       <% if show_current_project? %>
         <span class="ltl-current-project">
   	<%= current_project %>:
         </span>
       <% end %>
+      <%= link_to t(".dashboard"), projects_path %>
       <% if show_task_selections?(params) %>
         <%= link_to t(".tasks"), project_tasks_path(params[:project_id]) %>
 	<%= link_to t(".statistics"), project_statistics_path(params[:project_id]) %>
       <% end %>
     </nav>
 
-    <nav class="ltl-application-menu span-3 last">
-      <%= link_to t(".home"), projects_path %>
-    </nav>
+    <!-- <nav class="ltl-application-menu span-3 last"> -->
+    <!--   <%= link_to t(".dashboard"), projects_path %> -->
+    <!-- </nav> -->
   </div>
-  <% else %>
-  <hr/>
   <% end %>
 
 </header>
