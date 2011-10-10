@@ -21,7 +21,11 @@ div.header-grey {
     background: #ececec; /* for non-css3 browsers */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ececec', endColorstr='#ccc'); /* for IE */
     background: -webkit-gradient(linear, left top, left bottom, from(#ececec), to(#ccc)); /* for webkit browsers */
-    background: -moz-linear-gradient(top,  #ececec,  #ccc); /* for firefox 3.6+ */ 
+    background: -moz-linear-gradient(top,  #ececec,  #ccc); /* for firefox 3.6+ */
+    
+    background: -ms-linear-gradient(#ececec, #ccc);
+    background: -o-linear-gradient(#ececec, #ccc);
+    background: linear-gradient(#ececec, #ccc);
 }
 
 hr.header-border {
